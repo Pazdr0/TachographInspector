@@ -8,13 +8,15 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
 
+    private int aba = 2;
+
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(Application.class);
 	}
 	
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+	    SpringApplication.run(Application.class, args);
+    }
 
 }
