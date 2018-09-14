@@ -13,3 +13,5 @@ application.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 \.idea/
+
+*.properties
