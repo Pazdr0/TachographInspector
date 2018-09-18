@@ -1,5 +1,6 @@
 package pl.bgolc.tachograph.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -12,7 +13,9 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="data")
-public class Data {
+public class Data implements Serializable {
+	
+	private static final long serialVersionUID = 2l;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

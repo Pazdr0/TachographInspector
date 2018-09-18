@@ -19,13 +19,13 @@
 </head>
 <body>
 	<div id="maindiv">
-		<form>
+		<form action="#" th:action="@{/register}" th:object="${user}" method="post">
 			<fieldset>
 				<legend>Rejestracja</legend>
 				<div id="fields">
-				<span class="field">Login: <input type="text" /></span><br />
-				<span class="field">Hasło: <input type="password" /></span><br />
-				<span class="field">Email: <input type="email" /></span></br />
+				<span class="field">Login: <input type="text" th:field="*{user.userName}" id="userName"/></span><br />
+				<span class="field">Hasło: <input type="password" th:field="*{password}"/></span><br />
+				<span class="field">Email: <input type="email" th:field="*{email}"/></span><br />
 				<span class="submit"><input type="submit" value="Zatwierdź" /></span><br />
 				</div>
 			</fieldset>
