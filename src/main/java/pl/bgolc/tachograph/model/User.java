@@ -1,6 +1,7 @@
 package pl.bgolc.tachograph.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -15,7 +17,7 @@ import javax.validation.constraints.Size;
 @Table(name="users")
 public class User implements Serializable {
 	
-	private static final long serialVersionUID = 1l;
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -26,6 +28,7 @@ public class User implements Serializable {
 	private String userName;
 	@NotBlank
 	@Size(min=5, max=30)
+    @Email
 	@Column(name="email")	
 	private String email;
 	@NotBlank
@@ -36,7 +39,23 @@ public class User implements Serializable {
 	public User() {
 		
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		User user = (User) o;
+		return Objects.equals(id, user.id) &&
+				Objects.equals(userName, user.userName) &&
+				Objects.equals(email, user.email) &&
+				Objects.equals(password, user.password);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, userName, email, password);
+	}
+
 	public User(String login, String password) {
 		super();
 		this.userName = login;

@@ -25,14 +25,18 @@
 			<p>Aplikacja ma na celu pomoc w kontroli czasu pracy kierowców.
 				Wystarczy wprowadzić dane odczytane z tachografu do aplikacji,
 				a sama pokaże nam, kiedy zapisy z urządzenia różnią się od reguł prawnych.</p>
-			<p> Kody zródłowe dostępne pod tym <a target="_blank" href="https://github.com/Pazdr0/TachographInspector">linkiem</a>
+			<p>Kody zródłowe dostępne pod tym <a target="_blank" href="https://github.com/Pazdr0/TachographInspector">linkiem</a>
+			<p>Aplikacja napisana jest w języku Java, używając frameworków: Spring (Spring Boot, Spring MVC, Spring Data, Spring Security) oraz Hibernate.
+				Część aplikacji, a konkretnie samo sprawdzanie zgodności czasu pracy kierowcy z przepisami napisana jest w języku Kotlin.
+				Stony napisane są oczywiście w HTMLu oraz wygląd nadany jest za pomocą języka CSS, część dynamiczna w języku JavaScript.
+				Aplikacja uruchomiona jest na kontenerze serwletów Apache Tomcat 9, baza danych to PostgreSQL</p>
 		</div>
 		<div id="login">
-			<form>
+			<form action="#" th:action="@{/login}" th:object="${user}" method="post">
 				<fieldset>
 					<legend>Logowanie</legend>
-					Login: <input type="text" /><br />
-					Hasło: <input type="password" /><br />
+					Login: <input type="text" th:field="*{userName}"/><br />
+					Hasło: <input type="password" th:field="*{password}"/><br />
 					<a th:href="@{register}" href="/register">Rejestracja</a>
 					<a th:href="@{remindpass}" href="/remindpass">Zapomniałem hasła</a><br />
 					<input type="submit" value="Zaloguj" />

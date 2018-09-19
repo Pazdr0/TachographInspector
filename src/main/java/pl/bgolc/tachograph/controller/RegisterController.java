@@ -2,6 +2,7 @@ package pl.bgolc.tachograph.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,28 +13,29 @@ import pl.bgolc.tachograph.model.User;
 import pl.bgolc.tachograph.service.UserService;
 
 @Controller
-@RequestMapping("/register")
 public class RegisterController {
 
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping
-	public String showRegisterForm() {
+	@GetMapping("/register")
+	public String showRegisterForm(@ModelAttribute User user) {
 		return "register";
 	}
 	
-	@PostMapping
-	public String register(@ModelAttribute("user") User user, BindingResult errors) {
+	@PostMapping("/register")
+	public String register(@ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+		model.addAttribute("userName", user.getUserName());
+		model.addAttribute("email", user.getEmail());
+		model.addAttribute("password", user.getPassword());
 
-		String username = user.getUserName();
-		String passwd = user.getPassword();
-		String email = user.getEmail();
-		
-		User newUser = new User(username, email, passwd);
-		
-		userService.register(newUser.getUserName(), newUser.getEmail(), newUser.getPassword());
-		//		userService.register(user.getUserName(), user.getEmail(), user.getPassword());
-		return "register";
+		userService.register(user.getUserName(), user.getEmail(), user.getPassword());
+
+		return "redirect:/registered";
+	}
+
+	@GetMapping("/registered")
+	public String registered() {
+		return "registered";
 	}
 }

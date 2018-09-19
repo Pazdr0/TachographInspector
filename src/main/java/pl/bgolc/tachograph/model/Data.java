@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 @Table(name="data")
 public class Data implements Serializable {
 	
-	private static final long serialVersionUID = 2l;
+	private static final long serialVersionUID = 2L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

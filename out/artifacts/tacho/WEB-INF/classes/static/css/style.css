@@ -1,0 +1,23 @@
+body {
+	padding: 20px;
+	background-image: url("../img/truck.jpg")
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+	background-color: lightgray;
+	width: 50%;
+	margin-left: 25%;
+	border-radius: 5px;
+}
+
+div#footermail {
+	float: left;
+	width:50%;
+}
+div#footergit {
+	float: left;
+	width:50%;
+}		

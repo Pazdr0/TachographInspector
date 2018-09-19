@@ -1,0 +1,29 @@
+h3 {
+	text-align: center;
+}
+
+div#loginpage {
+	margin: 50px;
+}
+
+div#info {
+	background-color: hsl(31, 100%, 90%);
+	float: left;
+	width:65%;
+	overflow: hidden;
+	padding: 20px;
+	margin-right: 30px;
+	border-radius: 5px;
+	box-shadow: -5px -5px 20px #abb6c9;
+}
+
+div#login {
+	overflow: hidden;
+	margin-left: 30px;
+	max-width: 300px;
+}
+
+fieldset {
+	background-color: white;
+
+}
