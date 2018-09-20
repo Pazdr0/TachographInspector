@@ -2,7 +2,9 @@ create table "tacho".users(
 	id serial primary key,
 	username varchar(30) not null,
 	email varchar(30) not null,
-	passwd varchar(200) not null
+	passwd varchar(200) not null,
+	roles varchar(10) not null default 'user',
+	active boolean not null default false
 );
 
 create table "tacho".dane(
@@ -12,7 +14,9 @@ create table "tacho".dane(
 	upload_date date not null
 );
 
-alter table "tacho".dane
-	alter column upload_data timestamp without time zone not null;
+alter table "tacho".users
+	--alter column upload_data timestamp without time zone not null;
+	alter column roles varchar(10) not null default 'user'
 
-drop table "tacho".dane
+drop table "tacho".dane;
+drop table "tacho".users
