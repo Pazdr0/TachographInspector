@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import pl.bgolc.tachograph.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query(value="SELECT \"tacho\".login(:_login, :_passwd)", nativeQuery=true)
 	public boolean login(@Param("_login") String login, @Param("_passwd") String passwd);

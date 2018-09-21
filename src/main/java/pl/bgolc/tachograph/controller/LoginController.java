@@ -3,6 +3,8 @@ package pl.bgolc.tachograph.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,7 +32,7 @@ public class LoginController {
 	
 	@PostMapping
 	public String loggedIn(@ModelAttribute User user, BindingResult bindingResult, Model model) {
-		model.addAttribute("userName", user.getUserName());
+/*		model.addAttribute("userName", user.getUserName());
 		model.addAttribute("password", user.getPassword());
 
 		Boolean loggedIn = userService.login(user.getUserName(), user.getPassword());
@@ -40,6 +42,7 @@ public class LoginController {
 		} else {
 			log.info("Błąd logowania");
 			return "login";
-		}
+		}*/
+		return "redirect:/home";
 	}
 }
