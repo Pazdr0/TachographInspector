@@ -17,7 +17,7 @@ import pl.bgolc.tachograph.model.User;
 import pl.bgolc.tachograph.service.UserService;
 
 @Controller
-@RequestMapping({"/", "/login"})
+@RequestMapping({"/", ("/login")})
 public class LoginController {
 
 	@Autowired
@@ -26,12 +26,12 @@ public class LoginController {
 	private Logger log = LoggerFactory.getLogger(LoginController.class);
 	
 	@GetMapping
-	public String login(@ModelAttribute User user) {
+	public String login(/*@ModelAttribute User user*/) {
 		return "login";
 	}
 	
 	@PostMapping
-	public String loggedIn(@ModelAttribute User user, BindingResult bindingResult, Model model) {
+	public String loggedIn(/*@ModelAttribute User user, BindingResult bindingResult, Model model*/) {
 /*		model.addAttribute("userName", user.getUserName());
 		model.addAttribute("password", user.getPassword());
 
@@ -45,4 +45,9 @@ public class LoginController {
 		}*/
 		return "redirect:/home";
 	}
+/*
+    @GetMapping("/logout")
+    public String logout() {
+	    return "logout";
+    }*/
 }
