@@ -3,12 +3,7 @@ package pl.bgolc.tachograph.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -27,15 +22,18 @@ public class User implements Serializable {
 	@Column(name="username")
 	private String userName;
 	@NotBlank
-	@Size(min=5, max=30)
     @Email
 	@Column(name="email")	
 	private String email;
 	@NotBlank
-	@Size(min=6, max=30)
+	@Size(min=8, max=30)
 	@Column(name="passwd")
 	private String password;
 
+	@NotBlank
+	@Size(min=8, max=30)
+	@Transient
+	private String confirmPass;
 	public User() {
 		
 	}
@@ -70,6 +68,9 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	public String getConfirmPass() {
+		return confirmPass;
+	}
 	/**
 	 * @return the userName
 	 */
@@ -110,6 +111,10 @@ public class User implements Serializable {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void setConfirmPass(String confirmPass) {
+		this.confirmPass = confirmPass;
 	}
 	
 	

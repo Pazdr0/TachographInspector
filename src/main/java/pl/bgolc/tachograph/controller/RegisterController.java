@@ -30,15 +30,14 @@ public class RegisterController {
 
     @PostMapping
     public String register(@ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
-        String confirmPassword = null;
 
         model.addAttribute("userName", user.getUserName());
         model.addAttribute("email", user.getEmail());
         model.addAttribute("password", user.getPassword());
-        model.addAttribute("confirmPassword", confirmPassword);
+        model.addAttribute("confirmPassword", user.getConfirmPass());
 
-        if (!user.getPassword().equals(confirmPassword)) {
-            log.error("Błąd rejestracji" + confirmPassword);
+        if (!user.getPassword().equals(user.getConfirmPass())) {
+            log.error("Błąd rejestracji" + user.getConfirmPass());
             return "register";
         } else {
             log.info("Rejestracja udana");
