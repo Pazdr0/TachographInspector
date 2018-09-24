@@ -16,38 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.bgolc.tachograph.model.User;
 import pl.bgolc.tachograph.service.UserService;
 
-@Controller
-@RequestMapping({"/", ("/login")})
-public class LoginController {
+import javax.validation.Valid;
 
-	@Autowired
-	private UserService userService;
-	
-	private Logger log = LoggerFactory.getLogger(LoginController.class);
+@Controller
+@RequestMapping({"/login"})
+public class LoginController {
 	
 	@GetMapping
-	public String login(/*@ModelAttribute User user*/) {
+	public String login() {
 		return "login";
 	}
-	
-	@PostMapping
-	public String loggedIn(/*@ModelAttribute User user, BindingResult bindingResult, Model model*/) {
-/*		model.addAttribute("userName", user.getUserName());
-		model.addAttribute("password", user.getPassword());
 
-		Boolean loggedIn = userService.login(user.getUserName(), user.getPassword());
-		if (loggedIn == true) {
-			log.info("Zalogowano użytkownika: " + user.getUserName());
-			return "redirect:/home";
-		} else {
-			log.info("Błąd logowania");
-			return "login";
-		}*/
-		return "redirect:/home";
-	}
-/*
-    @GetMapping("/logout")
-    public String logout() {
-	    return "logout";
-    }*/
+//	@PostMapping
+//	public String logged() {
+//		return "redirect:/register";
+//	}
 }

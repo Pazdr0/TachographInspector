@@ -1,8 +1,8 @@
 ﻿div#maindiv {
 	position: fixed;
 	text-align: center;
-	width: 50%;
-	margin-left: 25%;
+	width: 20%;
+	margin-left: 40%;
 }
 
 fieldset {
@@ -10,6 +10,7 @@ fieldset {
 }
 
 .field {
+	text-align: left;
 	margin: 5px 0px 5px; 0px;
 	display: block;
 }
@@ -21,4 +22,5 @@ fieldset {
 }
 
 #fields {
+	text-align: center;
 }

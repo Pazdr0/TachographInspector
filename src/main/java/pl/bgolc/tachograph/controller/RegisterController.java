@@ -1,5 +1,7 @@
 package pl.bgolc.tachograph.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,29 +15,36 @@ import pl.bgolc.tachograph.model.User;
 import pl.bgolc.tachograph.service.UserService;
 
 @Controller
+@RequestMapping("/register")
 public class RegisterController {
 
-	@Autowired
-	private UserService userService;
-	
-	@GetMapping("/register")
-	public String showRegisterForm(@ModelAttribute User user) {
-		return "register";
-	}
-	
-	@PostMapping("/register")
-	public String register(@ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
-		model.addAttribute("userName", user.getUserName());
-		model.addAttribute("email", user.getEmail());
-		model.addAttribute("password", user.getPassword());
+    private final Logger log = LoggerFactory.getLogger(RegisterController.class);
 
-		userService.register(user.getUserName(), user.getEmail(), user.getPassword());
+    @Autowired
+    private UserService userService;
 
-		return "redirect:/registered";
-	}
+    @GetMapping
+    public String showRegisterForm(@ModelAttribute User user) {
+        return "register";
+    }
 
-	@GetMapping("/registered")
-	public String registered() {
-		return "registered";
-	}
+    @PostMapping
+    public String register(@ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+        String confirmPassword = null;
+
+        model.addAttribute("userName", user.getUserName());
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("password", user.getPassword());
+        model.addAttribute("confirmPassword", confirmPassword);
+
+        if (!user.getPassword().equals(confirmPassword)) {
+            log.error("Błąd rejestracji" + confirmPassword);
+            return "register";
+        } else {
+            log.info("Rejestracja udana");
+            userService.register(user.getUserName(), user.getEmail(), user.getPassword());
+            return "redirect:/registered";
+        }
+    }
+
 }

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	lang="pl">
 <head>
 	<title>Tachograf inspektor</title>
 
 	<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-		integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 		crossorigin="anonymous" />
 	<link rel="stylesheet"
 		type="text/css"
@@ -14,12 +14,42 @@
 		href="../static/css/style.css" />
 	<link rel="stylesheet"
 		type="text/css"
-		th:href="@{css/previousdata.css}"
-		href="../static/css/previousdata.css" />
+		th:href="@{css/main.css}"
+		href="../static/css/main.css" />
 </head>
 <body>
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-expand-md navbar-light bg-light">
+				<span class="navbar-brand">OWI</span>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/home}" href="home.html">Strona główna</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Dane
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" th:href="@{/newdata}" href="newdata.html">Wprowadź nowe dane</a>
+								<a class="dropdown-item" th:href="@{/previousdata}" href="previousdata.html">Poprzednie dane</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/account}" href="account.html">Konto</a>
+						</li>
+					</ul>
+					<a class="nav-link logoutlink" th:href="@{/logout}" href="login.html">Wyloguj</a>
+				</div>
+			</nav>
 
+		<h3>Twoja historia</h3>
+
+	</div>
 
 	<footer>
 		Copyright &copy: Bartosz Golc <br />

@@ -32,14 +32,32 @@
 				Aplikacja uruchomiona jest na kontenerze serwletów Apache Tomcat 9, baza danych to PostgreSQL</p>
 		</div>
 		<div id="login">
-			<form action="#" th:action="@{/login}" th:object="${user}" method="post">
+			<form action="f" th:action="@{/login}" method="post">
 				<fieldset>
 					<legend>Logowanie</legend>
-					Login: <input type="text" th:field="*{userName}"/><br />
-					Hasło: <input type="password" th:field="*{password}"/><br />
-					<a th:href="@{register}" href="/register">Rejestracja</a>
-					<a th:href="@{remindpass}" href="/remindpass">Zapomniałem hasła</a><br />
-					<input type="submit" value="Zaloguj" />
+					<div th:if="${param.error}" class="alert alert-error">
+						Niepoprawny login lub hasło
+					</div>
+					<div th:if="${param.logout}" class="alert alert-logout">
+						Wylogowano
+					</div>
+					<table>
+						<tr>
+							<td>Login:</td>
+							<td><input type="text" name="username" /></td>
+						</tr>
+						<tr>
+							<td>Hasło:</td>
+							<td><input type="password" name="password" /></td>
+						</tr>
+						<tr>
+							<td><a th:href="@{/register}" href="register.html">Rejestracja</a></td>
+							<td><a th:href="@{/remindpass}" href="remindpass.html">Zapomniałem hasła</a></td>
+						</tr>
+						<tr>
+							<td><input type="submit" name="sumbit" value="Zaloguj" /></td>
+						</tr>
+					</table>
 				</fieldset>
 			</form>
 		</div>
