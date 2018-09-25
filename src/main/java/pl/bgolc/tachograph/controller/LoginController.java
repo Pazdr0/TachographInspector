@@ -27,8 +27,4 @@ public class LoginController {
 		return "login";
 	}
 
-//	@PostMapping
-//	public String logged() {
-//		return "redirect:/register";
-//	}
 }

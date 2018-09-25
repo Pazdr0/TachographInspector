@@ -33,7 +33,7 @@ public class User implements Serializable {
 	@NotBlank
 	@Size(min=8, max=30)
 	@Transient
-	private String confirmPass;
+	private String confirmPassword;
 	public User() {
 		
 	}
@@ -68,8 +68,8 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String getConfirmPass() {
-		return confirmPass;
+	public String getConfirmPassword() {
+		return confirmPassword;
 	}
 	/**
 	 * @return the userName
@@ -113,8 +113,8 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public void setConfirmPass(String confirmPass) {
-		this.confirmPass = confirmPass;
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 	
 	

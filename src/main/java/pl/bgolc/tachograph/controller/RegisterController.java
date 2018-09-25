@@ -34,10 +34,10 @@ public class RegisterController {
         model.addAttribute("userName", user.getUserName());
         model.addAttribute("email", user.getEmail());
         model.addAttribute("password", user.getPassword());
-        model.addAttribute("confirmPassword", user.getConfirmPass());
+        model.addAttribute("confirmPassword", user.getConfirmPassword());
 
-        if (!user.getPassword().equals(user.getConfirmPass())) {
-            log.error("Błąd rejestracji" + user.getConfirmPass());
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
+            log.error("Błąd rejestracji" + user.getConfirmPassword());
             return "register";
         } else {
             log.info("Rejestracja udana");
