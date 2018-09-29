@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Override
 	public Boolean login(String login, String passwd) {
 		return userRepository.login(login, passwd);

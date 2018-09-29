@@ -8,6 +8,7 @@ import pl.bgolc.tachograph.service.AuthenticationFacadeService;
 @Component
 public class AuthenticationFacadeServiceImpl implements AuthenticationFacadeService {
 
+    /*Getting username of logged in user*/
     @Override
     public Authentication getAuthentication() {
         return SecurityContextHolder.getContext().getAuthentication();

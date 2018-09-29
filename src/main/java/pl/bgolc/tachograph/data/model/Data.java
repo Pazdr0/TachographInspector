@@ -1,10 +1,11 @@
-package pl.bgolc.tachograph.data;
+package pl.bgolc.tachograph.data.model;
 
 import java.util.Objects;
 
+/*Klasa reprezentująca dane z tachografu*/
 public class Data {
 
-    private String data;
+    private String date;
     private String activity;
     private String from;
     private String to;
@@ -14,8 +15,8 @@ public class Data {
 
     }
 
-    public Data(String data, String activity, String since, String to, String timeSpent) {
-        this.data = data;
+    public Data(String date, String activity, String since, String to, String timeSpent) {
+        this.date = date;
         this.activity = activity;
         this.from = since;
         this.to = to;
@@ -27,7 +28,7 @@ public class Data {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Data data1 = (Data) o;
-        return Objects.equals(data, data1.data) &&
+        return Objects.equals(date, data1.date) &&
                 Objects.equals(activity, data1.activity) &&
                 Objects.equals(from, data1.from) &&
                 Objects.equals(to, data1.to) &&
@@ -36,15 +37,15 @@ public class Data {
 
     @Override
     public int hashCode() {
-        return Objects.hash(data, activity, from, to, timeSpent);
+        return Objects.hash(date, activity, from, to, timeSpent);
     }
 
-    public String getData() {
-        return data;
+    public String getDate() {
+        return date;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getActivity() {
