@@ -15,7 +15,7 @@ public enum TimeRestrictions {
     SHORT_BREAK_30(30),
     SHORT_BREAK_45(45),
     DAILY_BREAK(660), 								//11h
-	DAILY_BREAK_SHORTENED(660), 					//9h
+	DAILY_BREAK_SHORTENED(540), 					//9h
     DAILY_BREAK_DIVIDED_3(180), 					//3h
     DAILY_BREAK_DIVIDED_9(540), 					//9h
     WEEKLY_BREAK(2700),					 			//45h
