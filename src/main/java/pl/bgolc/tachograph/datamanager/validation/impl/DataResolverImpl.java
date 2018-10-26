@@ -105,7 +105,6 @@ public enum DataResolverImpl implements DataResolver {
 
     /*
      * Method transforming String to LocalDate
-     * to a LocalDate object
      * */
     private LocalDate transformStringToLocalDateEnum(String date) {
         String splitter = " ";
@@ -116,28 +115,4 @@ public enum DataResolverImpl implements DataResolver {
         return localDate;
     }
 
-    
-    /*    public static LocalDate transformStringToLocalDate(String date) {
-    String splitter = " ";
-    String[] newDate = date.split(splitter);
-
-    LocalDate localDate = LocalDate.of(Integer.parseInt(newDate[3]), MonthConverter.convert(newDate[1]), Integer.parseInt(newDate[2]));
-    
-    return localDate;
-}*/
-    
-/*    
-     * Metoda do usuniecia
-     * 
-    public void readData() {
-        downloadDataFromFile("C:\\Users\\Bartek\\Documents\\Dokumenty\\PKK_cze_2017.csv");
-        for (Data tempData : data) {
-            System.out.println(tempData.getCalendarDate().get(Calendar.YEAR) + " " + (tempData.getCalendarDate().get(Calendar.MONTH) + 1) + " " +
-                    tempData.getCalendarDate().get(Calendar.DAY_OF_MONTH) + ", Day of week: " + tempData.getCalendarDate().get(Calendar.DAY_OF_WEEK));
-        }
-        for (Data tempData : data) {
-            System.out.println(tempData.getLocalDate().getYear() + " " + tempData.getLocalDate().getMonth() + " " +
-                    tempData.getLocalDate().getDayOfMonth() + ", Day of week: " + tempData.getLocalDate().getDayOfWeek());
-        }
-    }*/
 }
