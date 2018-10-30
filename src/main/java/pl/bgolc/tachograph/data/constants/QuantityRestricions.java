@@ -1,4 +1,4 @@
-package pl.bgolc.tachograph.datamanager.validation.constants;
+package pl.bgolc.tachograph.data.constants;
 
 /*
  * Restrictions for professional drivers 

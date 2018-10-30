@@ -13,10 +13,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Override
+	/*@Override
 	public Boolean login(String login, String passwd) {
 		return userRepository.login(login, passwd);
-	}
+	}*/
 	
 	@Override
 	public List<User> getUsers() {
@@ -26,5 +26,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean register(String username, String email, String passwd) {
 		return userRepository.register(username, email, passwd);
+	}
+
+	@Override
+	public User findByUserName(String userName) {
+		return userRepository.findByUserName(userName);
 	}
 }

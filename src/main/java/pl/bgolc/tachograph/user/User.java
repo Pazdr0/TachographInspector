@@ -17,14 +17,17 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+
 	@NotBlank
 	@Size(min=5, max=30)
 	@Column(name="username")
 	private String userName;
+
 	@NotBlank
     @Email
 	@Column(name="email")	
 	private String email;
+
 	@NotBlank
 	@Size(min=8, max=30)
 	@Column(name="passwd")
@@ -34,24 +37,11 @@ public class User implements Serializable {
 	@Size(min=8, max=30)
 	@Transient
 	private String confirmPassword;
+
+	/*
+	* Constructors
+	* */
 	public User() {
-		
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		User user = (User) o;
-		return Objects.equals(id, user.id) &&
-				Objects.equals(userName, user.userName) &&
-				Objects.equals(email, user.email) &&
-				Objects.equals(password, user.password);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, userName, email, password);
 	}
 
 	public User(String login, String password) {
@@ -68,47 +58,40 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String getConfirmPassword() {
-		return confirmPassword;
+	/*
+	* Getters
+	* */
+	public int getId() {
+		return id;
 	}
-	/**
-	 * @return the userName
-	 */
+
 	public String getUserName() {
 		return userName;
 	}
 
-	/**
-	 * @return the email
-	 */
 	public String getEmail() {
 		return email;
 	}
 
-	/**
-	 * @return the password
-	 */
 	public String getPassword() {
 		return password;
 	}
 
-	/**
-	 * @param userName the userName to set
-	 */
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	/*
+	* Setters
+	* */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-	/**
-	 * @param email the email to set
-	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	/**
-	 * @param password the password to set
-	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -116,6 +99,4 @@ public class User implements Serializable {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-	
-	
 }

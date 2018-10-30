@@ -1,0 +1,8 @@
+div#driverwindow {
+    text-align: center;
+    background-color: white;
+    margin-top: 50px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 30px;
+}

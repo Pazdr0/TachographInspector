@@ -1,8 +1,8 @@
-package pl.bgolc.tachograph.datamanager.validation.operations;
+package pl.bgolc.tachograph.operations;
 
 import java.time.Duration;
 
-import pl.bgolc.tachograph.datamanager.validation.constants.TimeRestrictions;
+import pl.bgolc.tachograph.data.constants.TimeRestrictions;
 
 /*
  * Final class managing duration variables

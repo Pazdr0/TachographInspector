@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	lang="pl">
 <head>
@@ -12,10 +12,10 @@
 		type="text/css"
 		th:href="@{css/style.css}"
 		href="../static/css/style.css" />
-	<link rel="stylesheet"
+	<!--link rel="stylesheet"
 		type="text/css"
-		th:href="@{css/previousdata.css}"
-		href="../static/css/previousdata.css" />
+		th:href="@{css/.css}"
+		href="../static/css/.css" /-->
 </head>
 <body>
 	<div>
@@ -44,32 +44,6 @@
 					<a class="nav-link logoutlink" th:href="@{/logout}" href="login.html">Wyloguj</a>
 				</div>
 			</nav>
-
-		<div id="driverwindow">
-			<h3>Wybierz Kierowce</h3>
-
-			<div id="choosewidnow">
-				<form action="#" th:action="@{/previousdata}" th:object="${driverP}" method="post">
-					<table id=driversTable>
-						<tr class="myrow">
-							<td></td>
-							<td class="mycol">Imię</td>
-							<td class="mycol">Nazwisko</td>
-						</tr>
-						<tr th:each="driver : ${drivers}">
-							<!-- <p>Id: <input type="text" th:field="*{userId}" /></p> -->
-							<td	 ><input type="radio" name="driver"></input></td>
-							<!-- <td><input type="radio" th:field="*{driverId}" th:value="${1}"></input></td> -->
-							<td class="mycol"><span th:text="${driver.firstName}"></span></td>
-							<td class="mycol"><span th:text="${driver.Surname}"></span></td>
-						</tr>
-					</table>
-					<td><button id="submitButton" type="submit">Wybierz</button></td>
-				</form>
-			</div>
-		</div>
-
-	</div>
 
 	<footer>
 		Copyright &copy: Bartosz Golc <br />

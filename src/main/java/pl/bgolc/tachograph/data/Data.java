@@ -1,28 +1,58 @@
-package pl.bgolc.tachograph.datamanager.validation.model;
+package pl.bgolc.tachograph.data;
 
-import pl.bgolc.tachograph.datamanager.validation.model.misdemeanors.MisdemeanorsDaily;
+import pl.bgolc.tachograph.data.temp.MisdemeanorsDaily;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /*
  * Class representing data 
  * from tachograph
  * */
-public class Data {
+@Entity
+@Table(name="data")
+public class Data implements Serializable {
 
-    /*String date converted to LocalDate object*/
-    private LocalDate localDate;
-    private String date;
+    private static final long serialVersionUID = 3L;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
+
+    @Column(name="activity")
     private String activity;
+
+    /*
+     *String date converted to LocalDate object
+     * */
+    @Column(name="date")
+    private LocalDate localDate;
+
+    @Column(name="start_time")
+    private LocalTime startTime;
+
+    @Column(name="end_time")
+    private LocalTime endTime;
+
+    @Transient
+    private String date;
+    @Transient
     private String from;
+    @Transient
     private String to;
+    @Transient
     private String timeSpent;
+
+    @Transient
     private MisdemeanorsDaily misdemeanors;
 
     /*
      * Constructors
      * */
     public Data() {
+
         misdemeanors = new MisdemeanorsDaily();
     }
 

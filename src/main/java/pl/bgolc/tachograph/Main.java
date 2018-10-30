@@ -1,19 +1,24 @@
 package pl.bgolc.tachograph;
 
-import pl.bgolc.tachograph.datamanager.validation.DataResolver;
-import pl.bgolc.tachograph.datamanager.validation.impl.DataResolverImpl;
-import pl.bgolc.tachograph.datamanager.validation.Inspector;
+import org.postgresql.util.PGInterval;
 
 public class Main {
 
 
 	public static void main(String[] args) {
-        DataResolver dataResolver = DataResolverImpl.getInstance();
-        dataResolver.downloadDataFromFile("C:\\Users\\bgolc\\Documents\\Docs\\PKK_cze_2017.csv");
-        Inspector inspector = Inspector.getInstance();
-        inspector.setData(dataResolver.getData());
+//        DataResolver dataResolver = DataResolverImpl.getInstance();
+//        dataResolver.downloadDataFromFile("C:\\Users\\bgolc\\Documents\\Docs\\PKK_cze_2017.csv");
+//        Inspector inspector = Inspector.getInstance();
+//        inspector.setData(dataResolver.getData());
                 
-        inspector.checkData();
+//        inspector.checkData();
+
+        PGInterval interval = new PGInterval();
+
+        interval.setHours(12);
+        interval.setMinutes(56);
+
+        System.out.println(interval);
 
 //        inspector.displayDayList();
 //        inspector.displayWeeksOfWork();

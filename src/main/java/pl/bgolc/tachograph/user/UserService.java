@@ -4,12 +4,14 @@ import java.util.List;
 
 public interface UserService {
 
-	/*Checking credentials*/
-	public Boolean login(String login, String passwd);
-
+	/*Checking credentials*//*
+	Boolean login(String login, String passwd);
+*/
 	/*Service for getting all username's id db*/
-	public List<User> getUsers();
+	List<User> getUsers();
 
 	/*Registering new user*/
-	public boolean register(String username, String email, String passwd);
+	boolean register(String username, String email, String passwd);
+
+	User findByUserName(String userName);
 }

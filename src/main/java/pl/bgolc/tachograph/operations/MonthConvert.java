@@ -1,4 +1,4 @@
-package pl.bgolc.tachograph.datamanager.validation.operations;
+package pl.bgolc.tachograph.operations;
 
 public enum MonthConvert {
 

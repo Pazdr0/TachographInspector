@@ -12,13 +12,15 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	/*Query checking if credentials are correct*/
 	@Query(value="SELECT \"tacho\".login(:_login, :_passwd)", nativeQuery=true)
-	public boolean login(@Param("_login") String login, @Param("_passwd") String passwd);
+	boolean login(@Param("_login") String login, @Param("_passwd") String passwd);
 
 	/*Lists all users*/
 	@Query(value="SELECT * FROM \"tacho\".users", nativeQuery=true)
-	public List<User> getUsers();
+	List<User> getUsers();
 
 	/*Query to register new user*/
 	@Query(value="SELECT \"tacho\".register(:_username, :_email, :_passwd)", nativeQuery=true)
-	public boolean register(@Param("_username") String username, @Param("_email") String email, @Param("_passwd") String passwd);
+	boolean register(@Param("_username") String username, @Param("_email") String email, @Param("_passwd") String passwd);
+
+	User findByUserName(String userName);
 }

@@ -1,4 +1,4 @@
-package pl.bgolc.tachograph.datamanager.validation.constants;
+package pl.bgolc.tachograph.data.constants;
 
 /* 
  * All actions than can be taken by a driver,

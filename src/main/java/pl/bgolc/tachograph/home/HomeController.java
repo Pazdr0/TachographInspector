@@ -8,25 +8,35 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.bgolc.tachograph.authentication.AuthenticationFacadeService;
+import pl.bgolc.tachograph.authentication.UserCredentials;
 import pl.bgolc.tachograph.user.User;
 
 @Controller
 @RequestMapping({"/", "/home"})
 public class HomeController {
 
+    /*
+    * Components
+    * */
     private final Logger log = LoggerFactory.getLogger(HomeController.class);
 
-    @Autowired
-    private AuthenticationFacadeService authenticationFacadeService;
+    private UserCredentials userCredentials;
 
+    /*
+    * Constructor
+    * */
+    @Autowired
+    public HomeController(UserCredentials userCredentials) {
+        this.userCredentials = userCredentials;
+    }
+
+    /*
+    * Methods
+    * */
     @GetMapping
     public String home() {
 
-        User user = new User();
-        Authentication authentication = authenticationFacadeService.getAuthentication();
-        user.setUserName(authentication.getName());
-        log.info("Logged in as: " + user.getUserName());
+        log.info("Logged in as: " + userCredentials.getName());
 
         return "home";
     }
