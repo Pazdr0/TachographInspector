@@ -1,6 +1,6 @@
 package pl.bgolc.tachograph.data;
 
-import pl.bgolc.tachograph.data.temp.MisdemeanorsDaily;
+import pl.bgolc.tachograph.data.temporary.MisdemeanorsDaily;
 
 import javax.persistence.*;
 import java.io.Serializable;
