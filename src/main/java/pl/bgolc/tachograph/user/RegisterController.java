@@ -22,7 +22,7 @@ public class RegisterController {
 
     @GetMapping
     public String showRegisterForm(@ModelAttribute User user) {
-        return "register";
+        return "user/register";
     }
 
     @PostMapping
@@ -35,11 +35,11 @@ public class RegisterController {
 
         if (!user.getPassword().equals(user.getConfirmPassword())) {
             log.error("Błąd rejestracji" + user.getConfirmPassword());
-            return "register";
+            return "user/register";
         } else {
             log.info("Rejestracja udana");
             userService.register(user.getUserName(), user.getEmail(), user.getPassword());
-            return "redirect:/registered";
+            return "redirect:/user/registered";
         }
     }
 

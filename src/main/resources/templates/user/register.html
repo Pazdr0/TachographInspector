@@ -11,14 +11,43 @@
 	<link rel="stylesheet"
 		type="text/css"
 		th:href="@{css/style.css}"
-		href="../static/css/style.css" />
+		href="../../static/css/style.css" />
 	<link rel="stylesheet"
 		type="text/css"
-		th:href="@{css/inspect.css}"
-		href="../static/css/inspect.css" />
+		th:href="@{css/user/register.css}"
+		href="../../static/css/user/register.css" />
 </head>
 <body>
-
+	<div id="maindiv">
+		<form action="#" th:action="@{/register}" th:object="${user}" modelAttribute="user" method="post">
+			<fieldset>
+				<legend>Rejestracja</legend>
+				<table>
+					<div id="fields">
+						<tr>
+							<td><span class="field"> Login:</span></td>
+							<td><input type="text" th:field="*{userName}" id="userName" /></td>
+						</tr>
+						<tr>
+							<td><span class="field">Hasło:</span></td>
+							<td><input type="password" th:field="*{password}" /></td>
+						</tr>
+						<tr>
+							<td><span class="field">Potwierdź hasło:</span></td>
+							<td><input type="password" th:field="*{confirmPassword}" /></td>
+						</tr>
+						<tr>
+							<td><span class="field">Email:</span></td>
+							<td><input type="email" th:field="*{email}" /></td>
+						</tr>
+						<tr>
+							<td><span class="field"><input type="submit" value="Zatwierdź" /></span></td>
+						</tr>
+					</div>
+				</table>
+			</fieldset>
+		</form>
+	</div>
 
 	<footer>
 		Copyright &copy: Bartosz Golc <br />

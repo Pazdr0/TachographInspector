@@ -52,50 +52,50 @@ public enum Inspector {
      * It calls other methods in right order
      * */
     public void checkData() {
-    	sortWeeks();
-    	checkWeek();
+//    	sortWeeks();
+//    	checkWeek();
 
     }
 
     /*
      * Method checking weekly restrictions
      * */
-    private void checkWeek() {
-        for (int i = 0; i < workWeeksList.size(); i++/*WorkWeek week : workWeeksList*/) {
+   /* private void checkWeek() {
+        for (int i = 0; i < workWeeksList.size(); i++*//*WorkWeek week : workWeeksList*//*) {
 
             Duration weeklyDriveTimeDuration = Duration.ZERO;
 
-            /* Adding working time spent in a week */
+            *//* Adding working time spent in a week *//*
             for (pl.bgolc.tachograph.data.Data data : workWeeksList.get(i).getDataList()) {
                 if (data.getActivity().equals(Activities.DRIVE_TIME.getActivity()) || data.getActivity().equals(Activities.WORK.getActivity())) {
                     weeklyDriveTimeDuration = DurationManager.addTime(weeklyDriveTimeDuration, data.getTimeSpent());
                 }
             }
-            /* Checking if working time for a week is greater than restriction, if so Misdemeanor is added */
+            *//* Checking if working time for a week is greater than restriction, if so Misdemeanor is added *//*
             if (DurationManager.compareDuration(weeklyDriveTimeDuration, TimeRestrictions.MAX_WEEKLY_DRIVE_TIME_ONE_WEEK)) {
                 workWeeksList.get(i).getMisdemeanorsWeekly().setExceededMaxWeeklyDriveTime(true);
             }
-            /* TODO delete when no longer needed
-             * Checking if above condition is working properly */
- /*           if (workWeeksList.get(i).getMisdemeanorsWeekly().isExceededMaxWeeklyDriveTime()) {
+            *//* TODO delete when no longer needed
+             * Checking if above condition is working properly *//*
+ *//*           if (workWeeksList.get(i).getMisdemeanorsWeekly().isExceededMaxWeeklyDriveTime()) {
                 System.out.println("przekroczono");
-            }*/
+            }*//*
 
             for (Day day : workWeeksList.get(i).getDayList()) {
 
-                /* Work time */
+                *//* Work time *//*
                 Duration extendedDailyDriveTimeDuration = Duration.ZERO;
-                /* Break */
+                *//* Break *//*
                 Duration dailyBreakDurationDuration = Duration.ZERO;
 
-                /* Adds drive time for one day*/
+                *//* Adds drive time for one day*//*
                 for (int j=0; j<day.getActivityList().size(); j++) {
                     if (day.getActivityList().get(j).equals(Activities.DRIVE_TIME.getActivity()) || day.getActivityList().get(j).equals(Activities.WORK.getActivity())) {
                         extendedDailyDriveTimeDuration = DurationManager.addTime(extendedDailyDriveTimeDuration, day.getTimeSpentList().get(j));
                     }
 
                     //TODO zaimplementowac tutaj jeszcze sprawdanie ilosci skroconych przerw w tygodniu
-/*                    if (day.getActivityList().get(j).equals(Activities.BREAK.getActivity())) {
+*//*                    if (day.getActivityList().get(j).equals(Activities.BREAK.getActivity())) {
                         if (DurationManager.compareDuration(DurationManager.transformToDuration(day.getTimeSpentList().get(j)), TimeRestrictions.DAILY_BREAK)) {
                             dailyBreakDurationDuration = DurationManager.addTime(dailyBreakDurationDuration, day.getTimeSpentList().get(j));
                         } else if ((DurationManager.compareDuration(DurationManager.transformToDuration(day.getTimeSpentList().get(j)), TimeRestrictions.DAILY_BREAK_DIVIDED_3)
@@ -104,27 +104,27 @@ public enum Inspector {
                                 && !DurationManager.compareDuration(DurationManager.transformToDuration(day.getTimeSpentList().get(j)), TimeRestrictions.DAILY_BREAK))) {
                             dailyBreakDurationDuration = DurationManager.addTime(dailyBreakDurationDuration, day.getTimeSpentList().get(j));
                         }
-                    }*/
+                    }*//*
                 }
-                /* If working time duration for one day is greater than 9h and smaller than 10h exceededWeeklyExtendedDriveTime is incremented */
+                *//* If working time duration for one day is greater than 9h and smaller than 10h exceededWeeklyExtendedDriveTime is incremented *//*
                 if (DurationManager.compareDuration(extendedDailyDriveTimeDuration, TimeRestrictions.MAX_DAILY_DRIVE_TIME)
                         && !DurationManager.compareDuration(extendedDailyDriveTimeDuration, TimeRestrictions.MAX_DAILY_DRIVE_TIME_EXTENDED)) {
                     workWeeksList.get(i).setExceededWeeklyExtendedDriveTimes(workWeeksList.get(i).getExceededWeeklyExtendedDriveTimes() + 1);
                 }
 
-/*                if (DurationManager.compareDuration(dailyBreakDurationDuration, TimeRestrictions.DAILY_BREAK_SHORTENED)
+*//*                if (DurationManager.compareDuration(dailyBreakDurationDuration, TimeRestrictions.DAILY_BREAK_SHORTENED)
                         && !DurationManager.compareDuration(dailyBreakDurationDuration, TimeRestrictions.DAILY_BREAK)) {
                     System.out.println(dailyBreakDurationDuration);
-                }*/
+                }*//*
             }
 
-            /* If number of weekly number of exceededDriveTimes is greater than restriction Misdemeanor is added */
+            *//* If number of weekly number of exceededDriveTimes is greater than restriction Misdemeanor is added *//*
             if (workWeeksList.get(i).getExceededWeeklyExtendedDriveTimes() > QuantityRestricions.MAX_EXTENDED_DRIVES_WEEKLY.getRestriction()) {
                 workWeeksList.get(i).getMisdemeanorsWeekly().setExceededWeeklyExtendedDriveTimes(true);
             }
             //TODO sprawdzic, czy ustawianie tego ograniczenia dziala poprawnie
         }
-    }
+    }*/
     
     //TODO zaimplementowac sprawdzanie dniowych ograniczen czasowych
     //TODO prawdopodobnie trzba jescze stwortrzyc enum MisdemandorsDaily i dodac je do klasy Day, zeby to tez sprawdzalo
@@ -140,15 +140,15 @@ public enum Inspector {
     /*
      * Dividing data into separate work weeks
      * */
-    private void sortWeeks() {
+  /*  private void sortWeeks() {
         Duration breakDuration;                             //Duration of weekly break time
         WorkWeek tempWorkWeek;      						//Temp WeekOfWork to be added into weekOfWorkList
         List<pl.bgolc.tachograph.data.Data> dataOutput;								//Data to be put in tempWeekOfWork
         List<pl.bgolc.tachograph.data.Data> tempData = new ArrayList<pl.bgolc.tachograph.data.Data>();        //Temp data list to work with input data
 
-/*        for (Data temp : dataInput) {						//Filling tempData with inputData
+*//*        for (Data temp : dataInput) {						//Filling tempData with inputData
             tempData.add(temp);
-        }*/
+        }*//*
         //TODO pozniej zmienic ta petle u gory na ktoras z ponizszych opcji
 //        tempData = dataInput;
         // Replaced above loop
@@ -165,13 +165,13 @@ public enum Inspector {
                 breakDuration = Duration.ZERO;
             	dataOutput.add(tempData.get(0));
             	
-            	/* First it check if a driver is having break in 3 following days (if he is, the duration is being added to breakDuration),
+            	*//* First it check if a driver is having break in 3 following days (if he is, the duration is being added to breakDuration),
             	 * because it's the maximum number of days one weekly break can take.
             	 * If driver takes a 5 day brake it doesn't matter, because it's going to add those breaks to next week, which will contain only break (empty like)
             	 * If the condition returns false it begins to check if data from 2 following days is time of break
             	 * As follows it check check if activity is break and adds it's time to breakDuration
             	 * If the next days are also breaks duration is summed up and Objects are removed from list
-            	 * */
+            	 * *//*
                 if (tempData.size() >= 3 && tempData.get(2).getActivity().equals(Activities.BREAK.getActivity()) && tempData.get(1).getActivity().equals(Activities.BREAK.getActivity())
                 		&& tempData.get(0).getActivity().equals(Activities.BREAK.getActivity())) {
                     breakDuration = DurationManager.addTime(breakDuration, tempData.get(0).getTimeSpent());
@@ -193,11 +193,11 @@ public enum Inspector {
 
                 tempData.remove(0);
                 
-                /* All restrictions are set in Restrictions class.
+                *//* All restrictions are set in Restrictions class.
                  * Conditions are checked, if breakDuration is greater than restriction, 
                  * loop ends and tempWorkWeek is being added to main week list
                  * or if there is no more data about week is being added.
-                 * */
+                 * *//*
                 if (DurationManager.compareDuration(breakDuration, TimeRestrictions.WEEKLY_BREAK)) {
                     tempWorkWeek.setDataList(dataOutput);
                     tempWorkWeek.setWeekStart(tempWorkWeek.getDataList().get(0).getLocalDate());
@@ -217,11 +217,11 @@ public enum Inspector {
                 }
 
             }
-            /* Sorting data into days, could be done in WorkWeek class, I guess... */
+            *//* Sorting data into days, could be done in WorkWeek class, I guess... *//*
             tempWorkWeek.sortIntoDays();
             workWeeksList.add(tempWorkWeek);
         }
-    }
+    }*/
 
 
     /*
@@ -296,7 +296,7 @@ public enum Inspector {
     /*
      * TODO to be rewritten
      * */
-    private void checkTwoNextWeeks() {
+  /*  private void checkTwoNextWeeks() {
         List<pl.bgolc.tachograph.data.Data> twoWeeksData = new ArrayList<pl.bgolc.tachograph.data.Data>();
         Duration duration;
 
@@ -333,7 +333,7 @@ public enum Inspector {
             System.out.println(duration);
             System.out.println(tempData.size());
 
- /*           if (Adder.compareDuration(duration, 2520)) {
+ *//*           if (Adder.compareDuration(duration, 2520)) {
                 for (; j < dataOutput.size()-(dataOutput.size()-tempData.size()); j++) {
                     dataOutput.get(j).getMisdemeanors().setExceededMaxWeeklyDriveTimeTwoWeeks(true);
                 }
@@ -341,8 +341,8 @@ public enum Inspector {
                 for (; j < dataOutput.size(); j++) {
                     dataOutput.get(j).getMisdemeanors().setExceededMaxWeeklyDriveTimeTwoWeeks(false);
                 }
-            }*/
+            }*//*
         }
-    }
+    }*/
 
 }

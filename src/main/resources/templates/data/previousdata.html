@@ -11,39 +11,46 @@
 	<link rel="stylesheet"
 		type="text/css"
 		th:href="@{css/style.css}"
-		href="../static/css/style.css" />
+		href="../../static/css/style.css" />
 	<link rel="stylesheet"
 		type="text/css"
-		th:href="@{css/previousdata.css}"
-		href="../static/css/previousdata.css" />
+		th:href="@{css/data/previousdata.css}"
+		href="../../static/css/data/previousdata.css" />
 </head>
 <body>
 	<div>
 		<nav class="navbar navbar-expand-lg navbar-expand-md navbar-light bg-light">
-				<span class="navbar-brand">Tachograf</span>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+			<span class="navbar-brand">Tachograf</span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/home}" href="home.html">Strona główna</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dane</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" th:href="@{/newdata}" href="newdata.html">Wprowadź nowe dane</a>
-								<a class="dropdown-item" th:href="@{/previousdata}" href="previousdata.html">Poprzednie dane</a>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/account}" href="account.html">Konto</a>
-						</li>
-					</ul>
-					<a class="nav-link logoutlink" th:href="@{/logout}" href="login.html">Wyloguj</a>
-				</div>
-			</nav>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/home}" href="../home.html">Strona główna</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kierowcy</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/newdriver}" href="../driver/newdriver.html">Dodaj kierowce</a>
+							<a class="dropdown-item" th:href="@{/existingdrivers}" href="../driver/existingdrivers.html">Istniejacy kierowcy</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dane</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/newdata}" href="newdata.html">Wprowadź nowe dane</a>
+							<a class="dropdown-item" th:href="@{/previousdata}" href="previousdata.html">Poprzednie dane</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/account}" href="../user/account.html">Konto</a>
+					</li>
+				</ul>
+				<a class="nav-link logoutlink" th:href="@{/logout}" href="../user/login.html">Wyloguj</a>
+			</div>
+		</nav>
 
 		<div id="driverwindow">
 			<h3>Wybierz Kierowce</h3>
@@ -58,7 +65,7 @@
 						</tr>
 						<tr th:each="driver : ${drivers}">
 							<!-- <p>Id: <input type="text" th:field="*{userId}" /></p> -->
-							<td	 ><input type="radio" name="driver"></input></td>
+							<td><input type="radio" th:field="*{driverId}" th:value="${driver.driverId}" name="driver"></input></td>
 							<!-- <td><input type="radio" th:field="*{driverId}" th:value="${1}"></input></td> -->
 							<td class="mycol"><span th:text="${driver.firstName}"></span></td>
 							<td class="mycol"><span th:text="${driver.Surname}"></span></td>

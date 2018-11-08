@@ -37,18 +37,16 @@ public class DriverController {
     * */
     @GetMapping("/newdriver")
     public String newDriver(@ModelAttribute Driver driver) {
-        return "newdriver";
+        return "driver/newdriver";
     }
 
     //TODO dodac jakas wiadomosc w stylu alert, ze dodano kierowce
     @PostMapping("/newdriver")
     public String addDriver(@ModelAttribute("driver") Driver driver, BindingResult bindingResult, Model model) {
         driver.setUserId(userCredentials.getUserId());
-//        model.addAttribute("firstName", driver.getFirstName());
-//        model.addAttribute("surname", driver.getSurname());
-        log.info("name: " + driver.getFirstName());
+//        log.info("name: " + driver.getFirstName());
         driverService.save(driver);
-        return "newdriver";
+        return "driver/newdriver";
     }
 
 
@@ -58,6 +56,6 @@ public class DriverController {
     @GetMapping("/existingdrivers")
     public String existingDrivers(Model model) {
         model.addAttribute("drivers", driverService.findByUserId(userCredentials.getUserId()));
-        return "existingdrivers";
+        return "driver/existingdrivers";
     }
 }

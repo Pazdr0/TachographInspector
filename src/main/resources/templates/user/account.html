@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	lang="pl">
 <head>
@@ -11,11 +11,11 @@
 	<link rel="stylesheet"
 		type="text/css"
 		th:href="@{css/style.css}"
-		href="../static/css/style.css" />
+		href="../../static/css/style.css" />
 	<link rel="stylesheet"
 		type="text/css"
-		th:href="@{css/newdriver.css}"
-		href="../static/css/newdriver.css" />
+		th:href="@{css/user/main.css}"
+		href="../../static/css/user/main.css" />
 </head>
 <body>
 	<div>
@@ -28,20 +28,20 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" th:href="@{/home}" href="home.html">Strona główna</a>
+						<a class="nav-link" th:href="@{/home}" href="../home.html">Strona główna</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kierowcy</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" th:href="@{/newdriver}" href="newdriver.html">Dodaj kierowce</a>
-							<a class="dropdown-item" th:href="@{/existingdrivers}" href="existingdrivers.html">Istniejacy kierowcy</a>
+							<a class="dropdown-item" th:href="@{/newdriver}" href="../driver/newdriver.html">Dodaj kierowce</a>
+							<a class="dropdown-item" th:href="@{/existingdrivers}" href="../driver/existingdrivers.html">Istniejacy kierowcy</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dane</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" th:href="@{/newdata}" href="newdata.html">Wprowadź nowe dane</a>
-							<a class="dropdown-item" th:href="@{/previousdata}" href="previousdata.html">Poprzednie dane</a>
+							<a class="dropdown-item" th:href="@{/newdata}" href="../data/newdata.html">Wprowadź nowe dane</a>
+							<a class="dropdown-item" th:href="@{/previousdata}" href="../data/previousdata.html">Poprzednie dane</a>
 						</div>
 					</li>
 					<li class="nav-item">
@@ -52,16 +52,8 @@
 			</div>
 		</nav>
 
-		<div id="driverwindow">
-			<h5>Wprowadź nowego kierowce</h5>
-			<div>
-				<form action="#" th:action="@{/newdriver}" th:object="${driver}" modelAttribute="driver" method="post">
-					Imie: <input type="text" th:field="*{firstName}">
-					Nazwisko: <input type="text" th:field="*{surname}">
-					<input id="submitButton" type="submit" value="Wyślij">
-				</form>
-			</div>
-		</div>
+		<h3>Konto</h3>
+
 	</div>
 
 	<footer>

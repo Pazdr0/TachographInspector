@@ -29,7 +29,7 @@ public class WorkWeek {
         misdemeanorsWeekly = new MisdemeanorsWeekly();
     }
 
-    public void sortIntoDays() {
+  /*  public void sortIntoDays() {
     	
 	    List<pl.bgolc.tachograph.data.Data> temp = new ArrayList<pl.bgolc.tachograph.data.Data>();
 	    temp.addAll(dataList);
@@ -50,12 +50,12 @@ public class WorkWeek {
                         breakDuration = DurationManager.addTime(breakDuration, temp.get(0).getTimeSpent());
                         temp.remove(0);
                         break;
-                    } /*else if ((DurationManager.compareDuration(DurationManager.transformToDuration(temp.get(0).getTimeSpent()), TimeRestrictions.DAILY_BREAK_DIVIDED_3)
+                    } *//*else if ((DurationManager.compareDuration(DurationManager.transformToDuration(temp.get(0).getTimeSpent()), TimeRestrictions.DAILY_BREAK_DIVIDED_3)
                                 && !DurationManager.compareDuration(DurationManager.transformToDuration(temp.get(0).getTimeSpent()), TimeRestrictions.DAILY_BREAK_DIVIDED_9))
                                 || (DurationManager.compareDuration(DurationManager.transformToDuration(temp.get(0).getTimeSpent()), TimeRestrictions.DAILY_BREAK_DIVIDED_9)
                                 && !DurationManager.compareDuration(DurationManager.transformToDuration(temp.get(0).getTimeSpent()), TimeRestrictions.DAILY_BREAK))) {
                         breakDuration = DurationManager.addTime(breakDuration, temp.get(0).getTimeSpent());
-                    }*/ else if (DurationManager.compareDuration(DurationManager.transformToDuration(temp.get(0).getTimeSpent()), TimeRestrictions.DAILY_BREAK_SHORTENED)
+                    }*//* else if (DurationManager.compareDuration(DurationManager.transformToDuration(temp.get(0).getTimeSpent()), TimeRestrictions.DAILY_BREAK_SHORTENED)
                     		&& !DurationManager.compareDuration(DurationManager.transformToDuration(temp.get(0).getTimeSpent()), TimeRestrictions.DAILY_BREAK)) {
                     	breakDuration = DurationManager.addTime(breakDuration, temp.get(0).getTimeSpent());
                     	exceededWeeklyInsufficientBreakTimes++;
@@ -65,20 +65,20 @@ public class WorkWeek {
                 }
                 temp.remove(0);
 
-/*
+*//*
 	            if (day.getLocalDate().equals(temp.get(0).getLocalDate())) {
                     day.addActivity(temp.get(0).getActivity());
                     day.addTimeSpent(temp.get(0).getTimeSpent());
                     temp.remove(0);
                 }
-*/
+*//*
             }
             System.out.println(day.getActivityList());
 	        System.out.println(day.getTimeSpentList() + "\n");
             dayList.add(day);
         }
 	    System.out.println("Koniec tygodnia............................");
-  /*      for (int i=0; i<dayList.size(); i++) {
+  *//*      for (int i=0; i<dayList.size(); i++) {
             for (int j=0; j<dayList.get(i).getActivityList().size(); j++) {
                 if (dayList.get(i).getActivityList().get(j).equals(Activities.BREAK.getActivity())) {
                     if (DurationManager.compareDuration(DurationManager.transformToDuration(dayList.get(i).getTimeSpentList().get(j)), TimeRestrictions.DAILY_BREAK_DIVIDED_9)
@@ -101,8 +101,8 @@ public class WorkWeek {
                     }
                 }
             }
-        }*/
-    }
+        }*//*
+    }*/
 
     /*
      * Getters

@@ -13,12 +13,12 @@ public class Main {
                 
 //        inspector.checkData();
 
-        PGInterval interval = new PGInterval();
+/*        PGInterval interval = new PGInterval();
 
         interval.setHours(12);
         interval.setMinutes(56);
 
-        System.out.println(interval);
+        System.out.println(interval);*/
 
 //        inspector.displayDayList();
 //        inspector.displayWeeksOfWork();

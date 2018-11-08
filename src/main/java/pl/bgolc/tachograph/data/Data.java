@@ -15,11 +15,15 @@ import java.time.LocalTime;
 @Table(name="data")
 public class Data implements Serializable {
 
+    @Transient
     private static final long serialVersionUID = 3L;
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int id;
+    private int dataId;
+
+    @Column(name="driver_id")
+    private int driverId;
 
     @Column(name="activity")
     private String activity;
@@ -36,6 +40,49 @@ public class Data implements Serializable {
     @Column(name="end_time")
     private LocalTime endTime;
 
+    @Column(name="time_spent")
+    private LocalTime timeSpent;
+
+    public int getDataId() {
+        return dataId;
+    }
+
+    public void setDataId(int id) {
+        this.dataId = id;
+    }
+
+    public int getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public LocalTime getTimeSpent() {
+        return timeSpent;
+    }
+
+    public void setTimeSpent(LocalTime timeSpent) {
+        this.timeSpent = timeSpent;
+    }
+
     @Transient
     private String date;
     @Transient
@@ -43,27 +90,24 @@ public class Data implements Serializable {
     @Transient
     private String to;
     @Transient
-    private String timeSpent;
-
-    @Transient
     private MisdemeanorsDaily misdemeanors;
-
+/*    @Transient
+    private String timeSpent;*/
     /*
      * Constructors
      * */
     public Data() {
-
         misdemeanors = new MisdemeanorsDaily();
     }
 
-    public Data(String date, String activity, String since, String to, String timeSpent) {
+/*    public Data(String date, String activity, String since, String to, String timeSpent) {
         this.date = date;
         this.activity = activity;
         this.from = since;
         this.to = to;
         this.timeSpent = timeSpent;
         misdemeanors = new MisdemeanorsDaily();
-    }
+    }*/
 
     /*
      * Getters
@@ -88,9 +132,9 @@ public class Data implements Serializable {
         return to;
     }
 
-    public String getTimeSpent() {
+/*    public String getTimeSpent() {
         return timeSpent;
-    }
+    }*/
 
     public MisdemeanorsDaily getMisdemeanors() {
         return misdemeanors;
@@ -119,9 +163,9 @@ public class Data implements Serializable {
         this.to = to;
     }
 
-    public void setTimeSpent(String timeSpent) {
+/*    public void setTimeSpent(String timeSpent) {
         this.timeSpent = timeSpent;
-    }
+    }*/
 
     public void setMisdemeanors(MisdemeanorsDaily misdemeanors) {
         this.misdemeanors = misdemeanors;

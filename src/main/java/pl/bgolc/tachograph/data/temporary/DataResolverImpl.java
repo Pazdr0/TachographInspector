@@ -40,6 +40,7 @@ public enum DataResolverImpl implements DataResolver {
     /*
      * Method downloads String from file and reorders it to Data class
      * */
+/*
     private void downloadFromFile(String pattern) {
         String splitter = ";";
         String newLine = "";
@@ -72,6 +73,7 @@ public enum DataResolverImpl implements DataResolver {
             }
         }
     }
+*/
 
     /*
      * Uses data from downloadFromFile method and deletes unwanted characters
@@ -79,7 +81,7 @@ public enum DataResolverImpl implements DataResolver {
     @Override
     public void downloadDataFromFile(String pattern) {
         ArrayList<pl.bgolc.tachograph.data.Data> newData = new ArrayList<pl.bgolc.tachograph.data.Data>();
-        downloadFromFile(pattern);
+//        downloadFromFile(pattern);
 
         for (pl.bgolc.tachograph.data.Data temp : data) {
             if (!temp.getDate().equals("data")) {

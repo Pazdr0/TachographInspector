@@ -10,6 +10,6 @@ public class RemindPassController {
 
     @GetMapping
     public String remind() {
-        return "remindpass";
+        return "user/remindpass";
     }
 }

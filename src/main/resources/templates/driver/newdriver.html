@@ -11,11 +11,11 @@
 	<link rel="stylesheet"
 		type="text/css"
 		th:href="@{css/style.css}"
-		href="../static/css/style.css" />
+		href="../../static/css/style.css" />
 	<link rel="stylesheet"
 		type="text/css"
-		th:href="@{css/existingdrivers.css}"
-		href="../static/css/existingdrivers.css" />
+		th:href="@{css/driver/newdriver.css}"
+		href="../../static/css/driver/newdriver.css" />
 </head>
 <body>
 	<div>
@@ -28,7 +28,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" th:href="@{/home}" href="home.html">Strona główna</a>
+						<a class="nav-link" th:href="@{/home}" href="../home.html">Strona główna</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kierowcy</a>
@@ -40,31 +40,29 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dane</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" th:href="@{/newdata}" href="newdata.html">Wprowadź nowe dane</a>
-							<a class="dropdown-item" th:href="@{/previousdata}" href="previousdata.html">Poprzednie dane</a>
+							<a class="dropdown-item" th:href="@{/newdata}" href="../data/newdata.html">Wprowadź nowe dane</a>
+							<a class="dropdown-item" th:href="@{/previousdata}" href="../data/previousdata.html">Poprzednie dane</a>
 						</div>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:href="@{/account}" href="account.html">Konto</a>
+						<a class="nav-link" th:href="@{/account}" href="../user/account.html">Konto</a>
 					</li>
 				</ul>
-				<a class="nav-link logoutlink" th:href="@{/logout}" href="login.html">Wyloguj</a>
+				<a class="nav-link logoutlink" th:href="@{/logout}" href="../user/login.html">Wyloguj</a>
 			</div>
 		</nav>
+
 		<div id="driverwindow">
-			<h3>Twoi kierowcy</h3>
-			<table id=driversTable>
-				<tr>
-					<th>Imię</th>
-					<th>Nazwisko</th>
-				</tr>
-				<tr th:each="driver : ${drivers}">
-					<td><span th:text="${driver.firstName}"></span></td>
-					<td><span th:text="${driver.Surname}"></span></td>
-				</tr>
-			</table>
+			<h5>Wprowadź nowego kierowce</h5>
+			<div>
+				<form action="#" th:action="@{/newdriver}" th:object="${driver}" modelAttribute="driver" method="post">
+					Imie: <input type="text" th:field="*{firstName}">
+					Nazwisko: <input type="text" th:field="*{surname}">
+					<input id="submitButton" type="submit" value="Wyślij">
+				</form>
+			</div>
 		</div>
-    </div>
+	</div>
 
 	<footer>
 		Copyright &copy: Bartosz Golc <br />

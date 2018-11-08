@@ -10,7 +10,7 @@ public class RegisteredController {
 
     @GetMapping
     public String registered() {
-        return "registered";
+        return "user/registered";
     }
 
     //TODO napisac funkcje, ktora bedzie wysylala maila z linkiem do aktywacji konta

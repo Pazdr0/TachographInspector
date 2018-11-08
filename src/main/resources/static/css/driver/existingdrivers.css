@@ -4,6 +4,7 @@ div#driverwindow {
     margin-top: 50px;
     width: 50%;
     margin-left: 25%;
+    padding-bottom: 10px;
 }
 
 table#driversTable {

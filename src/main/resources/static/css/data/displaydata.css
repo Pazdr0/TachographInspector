@@ -1,0 +1,27 @@
+div#datawindow {
+    text-align: center;
+    background-color: white;
+    margin-top: 50px;
+    width: 80%;
+    margin-left: 10%;
+    padding: 20px;
+}
+
+table#datatable {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+th {
+    border: 2px solid;
+    text-align: center;
+    width: 20%;
+}
+
+td {
+    border: 1px solid;
+    text-align: left;
+    width: 20%;
+}
