@@ -11,5 +11,5 @@ public interface DriverService {
 
     List<Driver> findByUserId(int id);
 
-    boolean save(Driver driver);
+    void save(Driver driver);
 }

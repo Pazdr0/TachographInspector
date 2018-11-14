@@ -1,15 +1,17 @@
 package pl.bgolc.tachograph;
 
 import org.postgresql.util.PGInterval;
+import pl.bgolc.tachograph.data.DataResolver;
+import pl.bgolc.tachograph.data.Inspector;
 
 public class Main {
 
 
 	public static void main(String[] args) {
-//        DataResolver dataResolver = DataResolverImpl.getInstance();
+//		DataResolver dataResolver = new DataResolverImpl();
 //        dataResolver.downloadDataFromFile("C:\\Users\\bgolc\\Documents\\Docs\\PKK_cze_2017.csv");
 //        Inspector inspector = Inspector.getInstance();
-//        inspector.setData(dataResolver.getData());
+//        inspector.setData(dataResolver.getDataList());
                 
 //        inspector.checkData();
 

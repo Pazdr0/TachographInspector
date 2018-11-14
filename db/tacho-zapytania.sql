@@ -3,7 +3,7 @@ select * from "tacho".users;
 
 select * from "tacho".drivers;
 
-select * from "tacho".data;
+select * from "tacho".data where driver_id = 3;
 
 --tabele delete
 delete from "tacho".data;

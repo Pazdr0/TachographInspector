@@ -20,15 +20,9 @@ public final class DurationManager {
      * TODO create exception like 'WrongFormatException' to be thrown by this method
      * */
     public static Duration addTime(Duration timeSum, String timeToAdd) {
-        //TODO sprawdzic czy zmienna temp jest w ogóle potrzebna
-//    	Duration temp = Duration.ZERO;
         String[] timeComponents = timeToAdd.split(":");
-//        temp = timeSum.plus(Duration.ofHours(Integer.parseInt(timeComponents[0])).plusMinutes(Integer.parseInt(timeComponents[1])));
-//        System.out.println(temp.toMinutes());
-        timeSum = timeSum.plus(Duration.ofHours(Integer.parseInt(timeComponents[0])).plusMinutes(Integer.parseInt(timeComponents[1])));
-//        System.out.println(timeSum.toMinutes());
-
-        return timeSum;
+//        timeSum = timeSum.plus(Duration.ofHours(Integer.parseInt(timeComponents[0])).plusMinutes(Integer.parseInt(timeComponents[1])));
+        return timeSum.plus(Duration.ofHours(Integer.parseInt(timeComponents[0])).plusMinutes(Integer.parseInt(timeComponents[1])));
     }
 
     public static Duration transformToDuration(String timeToTransform) {

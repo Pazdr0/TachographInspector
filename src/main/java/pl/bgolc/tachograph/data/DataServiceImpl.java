@@ -22,4 +22,9 @@ class DataServiceImpl implements DataService {
 	public List<Data> findByDriverId(int driverId) {
 		return dataRepository.findByDriverId(driverId);
 	}
+
+	@Override
+	public void saveAll(List<Data> dataList) {
+		dataRepository.saveAll(dataList);
+	}
 }

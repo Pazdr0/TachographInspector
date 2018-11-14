@@ -57,7 +57,7 @@
 
 			<div id="choosewidnow">
 				<form action="#" th:action="@{/previousdata}" th:object="${driverP}" method="post">
-					<table id=driversTable>
+					<table id=driverstable>
 						<tr class="myrow">
 							<td></td>
 							<td class="mycol">Imię</td>
@@ -65,7 +65,7 @@
 						</tr>
 						<tr th:each="driver : ${drivers}">
 							<!-- <p>Id: <input type="text" th:field="*{userId}" /></p> -->
-							<td><input type="radio" th:field="*{driverId}" th:value="${driver.driverId}" name="driver"></input></td>
+							<td><input type="radio" th:field="*{driverId}" th:value="${driver.driverId}" name="driver" /></td>
 							<!-- <td><input type="radio" th:field="*{driverId}" th:value="${1}"></input></td> -->
 							<td class="mycol"><span th:text="${driver.firstName}"></span></td>
 							<td class="mycol"><span th:text="${driver.Surname}"></span></td>

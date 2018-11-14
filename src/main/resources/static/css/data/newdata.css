@@ -1,8 +1,21 @@
-div#driverwindow {
+div#datawindow {
     text-align: center;
     background-color: white;
     margin-top: 50px;
     width: 70%;
     margin-left: 15%;
     padding: 30px;
+}
+
+div#choosewidnow {
+    text-align: left;
+    margin-left: 25%;
+}
+
+div#driverstable {
+    padding: 20px;
+}
+.mycol {
+    width: 80px;
+    border: 1px solid black;
 }

@@ -37,13 +37,14 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public boolean save(Driver driver) {
-        try {
-            driverRepository.save(driver);
+    public void save(Driver driver) {
+        driverRepository.save(driver);
+/*
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
         return true;
+*/
     }
 }

@@ -1,11 +1,5 @@
-package pl.bgolc.tachograph.data.temporary;
+package pl.bgolc.tachograph.data;
 
-import pl.bgolc.tachograph.data.constants.Activities;
-import pl.bgolc.tachograph.data.constants.QuantityRestricions;
-import pl.bgolc.tachograph.data.constants.TimeRestrictions;
-import pl.bgolc.tachograph.operations.DurationManager;
-
-import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -22,7 +16,7 @@ public enum Inspector {
     private static final String TIME_FORMATTER = "H:m";		//Time formatter for DateTimeFormatter
     private static final int TWO_WEEKS = 14;
     private static final int ONE_WEEK = 7;
-    private List<pl.bgolc.tachograph.data.Data> dataInput;						    //Input data from constructor, set as unmodifiable and final so the data doesn't get mixed up
+    private List<Data> dataInput;						    //Input data from constructor, set as unmodifiable and final so the data doesn't get mixed up
     private List<WorkWeek> workWeeksList;					//Input data sorted into weeks of work are saved here
 
     

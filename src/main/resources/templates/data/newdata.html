@@ -51,8 +51,32 @@
 				<a class="nav-link logoutlink" th:href="@{/logout}" href="../user/login.html">Wyloguj</a>
 			</div>
 		</nav>
+		<div id="datawindow">
+			<h3>Wybierz Kierowce</h3>
+			<div id="choosewidnow">
+				<form action="#" th:action="@{/newdata}" th:object="${driverP}" enctype="multipart/form-data" method="post">
+					<div id=driverstable>
+						<table>
+							<tr class="myrow">
+								<td></td>
+								<td class="mycol">Imię</td>
+								<td class="mycol">Nazwisko</td>
+							</tr>
+							<tr th:each="driver : ${drivers}">
+								<!-- <p>Id: <input type="text" th:field="*{userId}" /></p> -->
+								<td><input type="radio" th:field="*{driverId}" th:value="${driver.driverId}" name="driver" /></td>
+								<!-- <td><input type="radio" th:field="*{driverId}" th:value="${1}"></input></td> -->
+								<td class="mycol"><span th:text="${driver.firstName}"></span></td>
+								<td class="mycol"><span th:text="${driver.Surname}"></span></td>
+							</tr>
+						</table>
+					</div>
+					<input type="file" name="file" /><br />
+					<button id="submitButton" type="submit">Wybierz</button>
+				</form>
+			</div>
+		</div>
 	</div>
-
 	<footer>
 		Copyright &copy: Bartosz Golc <br />
 		<div id="footermail">Email: bartosz.golc@outlook.com</div>

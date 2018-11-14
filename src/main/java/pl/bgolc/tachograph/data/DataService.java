@@ -7,4 +7,6 @@ public interface DataService {
 	void saveData();
 
 	List<Data> findByDriverId(int driverId);
+
+	void saveAll(List<Data> dataList);
 }

@@ -1,8 +1,10 @@
-package pl.bgolc.tachograph.data.temporary;
+package pl.bgolc.tachograph.data;
 
 
 import pl.bgolc.tachograph.data.constants.Activities;
 import pl.bgolc.tachograph.data.constants.TimeRestrictions;
+import pl.bgolc.tachograph.data.temporary.Day;
+import pl.bgolc.tachograph.data.temporary.MisdemeanorsWeekly;
 import pl.bgolc.tachograph.operations.DurationManager;
 
 import java.time.Duration;
