@@ -51,24 +51,27 @@
 				<a class="nav-link logoutlink" th:href="@{/logout}" href="../user/login.html">Wyloguj</a>
 			</div>
 		</nav>
-		<div id="datawindow">
-			<h3>Dane Kierowcy</h3>
-			<table id=datatable>
-				<tr>
-					<th>Data</th>
-					<th>Początek</th>
-					<th>Koniec</th>
-					<th>Aktywnosc</th>
-					<th>Czas</th>
-				</tr>
-				<tr th:each="data : ${datalist}">
-					<td><span th:text="${data.localDate}"></span></td>
-					<td><span th:text="${data.startTime}"></span></td>
-					<td><span th:text="${data.endTime}"></span></td>
-					<td><span th:text="${data.activity}"></span></td>
-					<td><span th:text="${data.timeSpent}"></span></td>
-				</tr>
-			</table>
+		<div class="mainwindow">
+			<h4 class="mainlabel">Dane Kierowcy</h4>
+			<div class="scrollable">
+				<table id=driverstable>
+					<tr>
+						<th>Data</th>
+						<th>Początek</th>
+						<th>Koniec</th>
+						<th>Aktywnosc</th>
+						<th>Czas</th>
+					</tr>
+					<tr th:each="data : ${datalist}">
+						<td><span th:text="${data.localDate}"></span></td>
+						<td><span th:text="${data.startTime}"></span></td>
+						<td><span th:text="${data.endTime}"></span></td>
+						<td><span th:text="${data.activity}"></span></td>
+						<td><span th:text="${data.timeSpent}"></span></td>
+					</tr>
+				</table>
+			</div>
+			<button id="choose" type="submit" name="submit">Sprawdź</button>
 		</div>
 	</div>
 

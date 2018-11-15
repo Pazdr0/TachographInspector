@@ -52,13 +52,15 @@
 			</div>
 		</nav>
 
-		<div id="driverwindow">
-			<h5>Wprowadź nowego kierowce</h5>
-			<div>
+		<div class="mainwindow">
+			<h4 class="mainlabel">Wprowadź nowego kierowce</h4>
+			<div class="inputwindow">
 				<form action="#" th:action="@{/newdriver}" th:object="${driver}" modelAttribute="driver" method="post">
-					Imie: <input type="text" th:field="*{firstName}">
-					Nazwisko: <input type="text" th:field="*{surname}">
-					<input id="submitButton" type="submit" value="Wyślij">
+					<label for="firstName">Imie</label>
+					<input type="text" th:field="*{firstName}" placeholder="Wprowadź imie" required>
+					<label for="surname">Nazwisko</label>
+					<input type="text" th:field="*{surname}" placeholder="Wprowadź nazwisko" required>
+					<button id="submitButton" type="submit">Wprowadź</button>
 				</form>
 			</div>
 		</div>

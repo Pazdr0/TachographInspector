@@ -9,17 +9,21 @@ div#driverwindow {
 
 table#driversTable {
     width: 80%;
-    margin-left: 10%;
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-th {
-    border: 2px solid;
-    text-align: center;
+    margin: auto;
+    max-width: 500px;
 }
 
-td {
-    border: 1px solid;
-    text-align: left;
+th, td {
+    padding: 10px;
+    text-align: center;
     width: 50%;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(157, 157, 157, 0.40)
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
 }

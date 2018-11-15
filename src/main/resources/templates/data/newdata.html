@@ -51,28 +51,29 @@
 				<a class="nav-link logoutlink" th:href="@{/logout}" href="../user/login.html">Wyloguj</a>
 			</div>
 		</nav>
-		<div id="datawindow">
-			<h3>Wybierz Kierowce</h3>
-			<div id="choosewidnow">
+		<div class="mainwindow">
+			<h4 class="mainlabel">Wybierz Kierowce</h4>
+			<div id="divtable" class="class="scrollable"">
 				<form action="#" th:action="@{/newdata}" th:object="${driverP}" enctype="multipart/form-data" method="post">
-					<div id=driverstable>
-						<table>
-							<tr class="myrow">
-								<td></td>
-								<td class="mycol">Imię</td>
-								<td class="mycol">Nazwisko</td>
-							</tr>
-							<tr th:each="driver : ${drivers}">
-								<!-- <p>Id: <input type="text" th:field="*{userId}" /></p> -->
-								<td><input type="radio" th:field="*{driverId}" th:value="${driver.driverId}" name="driver" /></td>
-								<!-- <td><input type="radio" th:field="*{driverId}" th:value="${1}"></input></td> -->
-								<td class="mycol"><span th:text="${driver.firstName}"></span></td>
-								<td class="mycol"><span th:text="${driver.Surname}"></span></td>
-							</tr>
-						</table>
+					<table id=driverstable>
+						<tr>
+							<th class="radio"></th>
+							<th>Imię</th>
+							<th>Nazwisko</th>
+							<th class="radio"></th>
+						</tr>
+						<tr th:each="driver : ${drivers}">
+							<td class="radio"><input type="radio" th:field="*{driverId}" th:value="${driver.driverId}" name="driver" /></td>
+							<td><span th:text="${driver.firstName}"></span></td>
+							<td><span th:text="${driver.Surname}"></span></td>
+							<td class="radio"></td>
+						</tr>
+					</table>
+					<div class="upload-btn-wrapper">
+						<button id="choose">Wybierz plik</button>
+						<input type="file" name="file" />
 					</div>
-					<input type="file" name="file" /><br />
-					<button id="submitButton" type="submit">Wybierz</button>
+					<button id="choose" type="submit" name="submit">Wybierz</button>
 				</form>
 			</div>
 		</div>

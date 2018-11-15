@@ -3,6 +3,10 @@ body {
 	background-image: url("../img/truck.jpg")
 }
 
+h4.mainlabel {
+    text-align: center;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;
@@ -15,12 +19,24 @@ footer {
 }
 
 div#footermail {
+	text-align: right;
+	padding-right: 10px;
 	float: left;
 	width:50%;
 }
 div#footergit {
+	text-align: left;
+	padding-left: : 10px;
 	float: left;
 	width:50%;
+}
+
+div.mainwindow {
+	background-color: white;
+	margin-top: 50px;
+	width: 80%;
+	margin-left: 10%;
+	padding: 20px;
 }
 
 .logoutlink {
@@ -29,10 +45,11 @@ div#footergit {
 }
 
 .alert-error {
-	background: rgba(255, 25, 25, 0.78);
+	background: rgba(255, 20, 20, 0.9);
 }
 
 .alert {
+	text-align: center;
 	border-style: solid;
 	border-width: 1px;
 	margin: 5px;

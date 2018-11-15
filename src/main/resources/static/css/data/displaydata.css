@@ -1,27 +1,41 @@
-div#datawindow {
-    text-align: center;
-    background-color: white;
-    margin-top: 50px;
-    width: 80%;
-    margin-left: 10%;
-    padding: 20px;
+table#driverstable {
+    width: 100%;
+    margin: auto;
 }
 
-table#datatable {
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 20px;
-    margin-bottom: 30px;
+th, td {
+    padding: 10px;
+    text-align: center;
+    width: 20%;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(157, 157, 157, 0.40)
 }
 
 th {
-    border: 2px solid;
-    text-align: center;
-    width: 20%;
+    background-color: #4CAF50;
+    color: white;
 }
 
-td {
-    border: 1px solid;
-    text-align: center;
-    width: 20%;
+div.scrollable {
+    margin: auto;
+    width: 80%;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+button#choose {
+	background-color: #4CAF50;
+	color: white;
+	padding: 5px 5px;
+	margin: 4px 0px;
+	border: none;
+	cursor: pointer;
+	width: 80%;
+    margin-left: 10%;
+}
+
+button#choose:hover {
+	opacity: 0.8;
 }

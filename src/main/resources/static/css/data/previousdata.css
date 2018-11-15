@@ -1,23 +1,46 @@
+div#divtable {
+    width: 80%;
+    margin: auto;
+    max-width: 550px;
+}
 
-div#driverwindow {
+table#driverstable {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+th, td {
+    padding: 10px;
     text-align: center;
+    width: 40%;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(157, 157, 157, 0.40)
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.radio {
     background-color: white;
-    margin-top: 50px;
-    width: 50%;
-    margin-left: 25%;
-    padding: 20px;
+    width: 10%;
 }
 
-div#choosewidnow {
-    text-align: left;
-    margin-left: 25%;
+button#choose {
+	background-color: #4CAF50;
+	color: white;
+	padding: 5px 5px;
+	margin: 8px 0px;
+	border: none;
+	cursor: pointer;
+	width: 80%;
+    margin-left: 10%;
 }
 
-button#submitButton {
-    margin-top: 20px;
-}
-
-.mycol {
-    width: 80px;
-    border: 1px solid black;
+button#choose:hover {
+	opacity: 0.8;
 }
