@@ -18,8 +18,8 @@
 		href="../../static/css/data/data.css" />
 	<link rel="stylesheet"
 		type="text/css"
-		th:href="@{css/data/newdata.css}"
-		href="../../static/css/data/newdata.css" />
+		th:href="@{css/data/validatedata.css}"
+		href="../../static/css/data/validatedata.css" />
 </head>
 <body>
 	<div>
@@ -56,32 +56,8 @@
 			</div>
 		</nav>
 		<div class="mainwindow">
-			<h4 class="mainlabel">Wybierz Kierowce</h4>
-			<div class="divtable">
-				<form action="#" th:action="@{/newdata}" th:object="${driverP}" enctype="multipart/form-data" method="post">
-					<div class="scrollable">
-						<table class="driverstable">
-							<tr>
-								<th class="radio"></th>
-								<th>Imię</th>
-								<th>Nazwisko</th>
-								<th class="radio"></th>
-							</tr>
-							<tr th:each="driver : ${drivers}">
-								<td class="radio"><input type="radio" th:field="*{driverId}" th:value="${driver.driverId}" name="driver" /></td>
-								<td><span th:text="${driver.firstName}"></span></td>
-								<td><span th:text="${driver.Surname}"></span></td>
-								<td class="radio"></td>
-							</tr>
-						</table>
-					</div>
-					<div class="upload-btn-wrapper">
-						<button class="choose">Wybierz plik</button>
-						<input type="file" name="file" />
-					</div>
-					<button class="choose" type="submit" name="submit">Wybierz</button>
-				</form>
-			</div>
+			<h4 class="mainlabel">Validated data</h4>
+
 		</div>
 	</div>
 	<footer>

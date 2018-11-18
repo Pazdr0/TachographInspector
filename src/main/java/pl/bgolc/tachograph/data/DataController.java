@@ -13,6 +13,7 @@ import pl.bgolc.tachograph.authentication.UserCredentials;
 import pl.bgolc.tachograph.driver.Driver;
 import pl.bgolc.tachograph.driver.DriverService;
 
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,9 +83,10 @@ public class DataController {
     }
 
     @PostMapping("/previousdata")
-    public String prevDataSubmit(@ModelAttribute("driverP") Driver driverP, RedirectAttributes redirectAttributes) {
+    public String prevDataSubmit(@ModelAttribute("driverP") Driver driverP, RedirectAttributes redirectAttributes, HttpSession session) {
 
         redirectAttributes.addFlashAttribute("driverP", driverP);
+        session.setAttribute("driver", driverP);
 
         return "redirect:/displaydata";
     }
@@ -93,14 +95,33 @@ public class DataController {
     * Display data
     * */
     @GetMapping("/displaydata")
-    public String displayData(Model model, @ModelAttribute("driverP") Driver driverP) {
+    public String displayData(Model model, /*@ModelAttribute("datalist") List<Data> dataList*/@ModelAttribute("driverP") Driver driver, @ModelAttribute("since") String since, @ModelAttribute("to") String to) {
 
-        if (driverP.getDriverId() != null) {
-            model.addAttribute("datalist", dataService.findByDriverId(driverP.getDriverId()));
+        if (driver.getDriverId() != null) {
+            model.addAttribute("datalist", dataService.findByDriverId(driver.getDriverId()));
         } else {
             log.error("There was no driver selected");
         }
 
         return "data/displaydata";
+    }
+
+    @PostMapping(value="/displaydata", params="choosedate")
+    public String chooseDate(/*@SessionAttribute("driver") Driver driver*/ HttpSession session, Model model, @ModelAttribute("since") String since, @ModelAttribute("to") String to, RedirectAttributes redirectAttributes) {
+        Driver driver = (Driver)session.getAttribute("driver");
+        log.info("Od: " + since + ", Do: " + to);
+        log.info("kierowca: " + driver.getDriverId());
+        if (driver.getDriverId() != null) {
+            model.addAttribute("datalist", dataService.findByDriverId(driver.getDriverId()));
+        }
+        redirectAttributes.addFlashAttribute("driverP", driver);
+
+        return "redirect:/displaydata";
+    }
+
+    @PostMapping(value="/displaydata", params="validate")
+    public String validateDate() {
+
+        return "redirect:/validatedata";
     }
 }

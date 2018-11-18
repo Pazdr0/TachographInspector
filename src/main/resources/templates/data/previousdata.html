@@ -14,6 +14,10 @@
 		href="../../static/css/style.css" />
 	<link rel="stylesheet"
 		type="text/css"
+		th:href="@{css/data/data.css}"
+		href="../../static/css/data/data.css" />
+	<link rel="stylesheet"
+		type="text/css"
 		th:href="@{css/data/previousdata.css}"
 		href="../../static/css/data/previousdata.css" />
 </head>
@@ -54,23 +58,27 @@
 
 		<div class="mainwindow">
 			<h4 class="mainlabel">Wybierz Kierowce</h4>
-			<div id=divtable>
+			<div class="divtable">
 				<form action="#" th:action="@{/previousdata}" th:object="${driverP}" method="post">
-					<table id=driverstable>
-						<tr class="myrow">
-							<th class="radio"></th>
-							<th>Imię</th>
-							<th>Nazwisko</th>
-							<th class="radio"></th>
-						</tr>
-						<tr th:each="driver : ${drivers}">
-							<td class="radio"><input type="radio" th:field="*{driverId}" th:value="${driver.driverId}" name="driver" /></td>
-							<td><span th:text="${driver.firstName}"></span></td>
-							<td><span th:text="${driver.Surname}"></span></td>
-							<td class="radio"></td>
-						</tr>
-					</table>
-					<button id="choose" type="submit" name="submit">Wybierz</button>
+					<div class="scrollable">
+						<table class="driverstable">
+							<tr class="myrow">
+								<th class="radio"></th>
+								<th>Imię</th>
+								<th>Nazwisko</th>
+								<th class="radio"></th>
+							</tr>
+							<tr th:each="driver : ${drivers}">
+								<td class="radio"><input type="radio" th:field="*{driverId}" th:value="${driver.driverId}" name="driver" /></td>
+								<td><span th:text="${driver.firstName}"></span></td>
+								<td><span th:text="${driver.Surname}"></span></td>
+								<td class="radio"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="choosebutton">
+						<button class="choose" type="submit" name="submit">Wybierz</button>
+					</div>
 				</form>
 			</div>
 		</div>

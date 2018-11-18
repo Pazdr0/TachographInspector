@@ -17,8 +17,8 @@ select upload_data ('tachograf', 'adasdasdsadsad sadsad ads aasds asda sdasd asd
 
 --zapytania
 select * from "tacho".users
-		where (username = '' or email = 'postgres')
-		and passwd = crypt('postgres', passwd);
+		where (username = 'pazdr0' or email = 'postgres')
+		and passwd = crypt('hakerek', passwd);
 
 select id from "tacho".users where username = 'tachograf';
 
@@ -32,7 +32,9 @@ insert into "tacho".drivers (user_id, first_name, surname) values ((select id fr
 --inne
 update "tacho".users
 	set roles = 'USER',
-	 	active = true
-	where username = 'pazdr0';
+	 	enabled = true
+	where username = 'tacho';
 	
 select now()
+
+  

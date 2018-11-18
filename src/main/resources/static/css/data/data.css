@@ -1,0 +1,52 @@
+div.divtable {
+    margin: auto;
+    max-width: 800px;
+}
+
+table.driverstable {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+div.scrollable {
+    margin: auto;
+    overflow-y: auto;
+    max-height: 700px;
+    width: 80%;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    width: 45%;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(157, 157, 157, 0.40)
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.radio {
+    background-color: white;
+    width: 5%;
+}
+
+button.choose {
+	background-color: #4CAF50;
+	color: white;
+	padding: 5px 5px;
+	margin: 4px 0px;
+	border: none;
+	cursor: pointer;
+	width: 80%;
+    margin-left: 10%;
+}
+
+button.choose:hover {
+	opacity: 0.8;
+}
