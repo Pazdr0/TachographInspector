@@ -24,6 +24,11 @@ class DataServiceImpl implements DataService {
 	}
 
 	@Override
+	public List<Data> findDataSinceTo(String since, String to) {
+		return null;
+	}
+
+	@Override
 	public void saveAll(List<Data> dataList) {
 		dataRepository.saveAll(dataList);
 	}

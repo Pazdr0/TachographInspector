@@ -8,5 +8,9 @@ public interface DataService {
 
 	List<Data> findByDriverId(int driverId);
 
+	List<Data> findDataSinceTo(String since, String to);
+
 	void saveAll(List<Data> dataList);
+
+
 }

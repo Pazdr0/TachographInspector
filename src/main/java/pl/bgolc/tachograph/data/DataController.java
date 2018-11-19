@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@SessionAttributes("driver")
 public class DataController {
 
     /*
@@ -40,6 +41,11 @@ public class DataController {
         this.driverService = driverService;
         this.userCredentials = userCredentials;
         this.dataResolver = dataResolver;
+    }
+
+    @ModelAttribute("driver")
+    public Driver driver() {
+        return new Driver();
     }
 
     /*
@@ -75,7 +81,7 @@ public class DataController {
     * Previous data
     * */
     @GetMapping("/previousdata")
-    public String prevData(Model model, @ModelAttribute("driverP") Driver driverP) {
+    public String prevData(Model model, @ModelAttribute("driver") Driver driverP) {
 
         model.addAttribute("drivers", driverService.findByUserId(userCredentials.getUserId()));
 
@@ -83,10 +89,9 @@ public class DataController {
     }
 
     @PostMapping("/previousdata")
-    public String prevDataSubmit(@ModelAttribute("driverP") Driver driverP, RedirectAttributes redirectAttributes, HttpSession session) {
+    public String prevDataSubmit(@ModelAttribute("driver") Driver driverP, RedirectAttributes redirectAttributes) {
 
-        redirectAttributes.addFlashAttribute("driverP", driverP);
-        session.setAttribute("driver", driverP);
+        redirectAttributes.addFlashAttribute("driver", driverP);
 
         return "redirect:/displaydata";
     }
@@ -95,26 +100,34 @@ public class DataController {
     * Display data
     * */
     @GetMapping("/displaydata")
-    public String displayData(Model model, /*@ModelAttribute("datalist") List<Data> dataList*/@ModelAttribute("driverP") Driver driver, @ModelAttribute("since") String since, @ModelAttribute("to") String to) {
+    public String displayData(Model model, /*@ModelAttribute("datalist") List<Data> dataList*/@ModelAttribute("driver") Driver driver, @ModelAttribute("since") String since, @ModelAttribute("to") String to) {
 
-        if (driver.getDriverId() != null) {
-            model.addAttribute("datalist", dataService.findByDriverId(driver.getDriverId()));
+        if (!since.isEmpty() && !to.isEmpty()) {
+            log.info("Od: " + since + ", Do: " + to);
+
+        } else if (!since.isEmpty() && to.isEmpty()) {
+            log.info("Od: " + since);
+
+        } else if (since.isEmpty() && !to.isEmpty()) {
+            log.info("Do: " + to);
+
         } else {
-            log.error("There was no driver selected");
+            if (driver.getDriverId() != null) {
+                model.addAttribute("datalist", dataService.findByDriverId(driver.getDriverId()));
+            } else {
+                log.error("There was no driver selected");
+            }
         }
 
         return "data/displaydata";
     }
 
     @PostMapping(value="/displaydata", params="choosedate")
-    public String chooseDate(/*@SessionAttribute("driver") Driver driver*/ HttpSession session, Model model, @ModelAttribute("since") String since, @ModelAttribute("to") String to, RedirectAttributes redirectAttributes) {
-        Driver driver = (Driver)session.getAttribute("driver");
-        log.info("Od: " + since + ", Do: " + to);
-        log.info("kierowca: " + driver.getDriverId());
-        if (driver.getDriverId() != null) {
-            model.addAttribute("datalist", dataService.findByDriverId(driver.getDriverId()));
-        }
-        redirectAttributes.addFlashAttribute("driverP", driver);
+    public String chooseDate(@ModelAttribute("since") String since, @ModelAttribute("to") String to, RedirectAttributes redirectAttributes) {
+
+//        log.info("Od: " + since + ", Do: " + to);
+        redirectAttributes.addFlashAttribute("since", since);
+        redirectAttributes.addFlashAttribute("to", to);
 
         return "redirect:/displaydata";
     }

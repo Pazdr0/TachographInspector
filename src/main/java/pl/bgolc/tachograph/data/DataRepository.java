@@ -18,4 +18,6 @@ public interface DataRepository extends JpaRepository<Data, Integer>{
 
     List<Data> findByDriverId(int driverId);
 
+    @Query(value="SELECT \"tacho\".", nativeQuery=true)
+    List<Data> findDataSinceTo(@Param("since") String since, @Param("to") String to);
 }
