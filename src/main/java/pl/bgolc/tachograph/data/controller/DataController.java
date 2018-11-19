@@ -1,4 +1,4 @@
-package pl.bgolc.tachograph.data;
+package pl.bgolc.tachograph.data.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,16 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.bgolc.tachograph.authentication.UserCredentials;
+import pl.bgolc.tachograph.data.service.DataResolver;
+import pl.bgolc.tachograph.data.service.DataService;
+import pl.bgolc.tachograph.data.model.Data;
 import pl.bgolc.tachograph.driver.Driver;
 import pl.bgolc.tachograph.driver.DriverService;
 
-import javax.servlet.http.HttpSession;
-import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@SessionAttributes("driver")
+@SessionAttributes({"driver", "datalist"})
 public class DataController {
 
     /*
@@ -48,6 +50,11 @@ public class DataController {
         return new Driver();
     }
 
+    @ModelAttribute("datalist")
+    public List<Data> dataList() {
+        return new ArrayList<Data>();
+    }
+
     /*
     * Model
     * */
@@ -55,7 +62,7 @@ public class DataController {
     * New data
     * */
     @GetMapping("/newdata")
-    public String newData(Model model, @ModelAttribute("driverP") Driver driverP) {
+    public String newData(Model model, @ModelAttribute("driver") Driver driverP) {
 
         model.addAttribute("drivers", driverService.findByUserId(userCredentials.getUserId()));
 
@@ -68,11 +75,7 @@ public class DataController {
         dataResolver.downloadDataFromFile(driverP.getDriverId(), multipartFile);
         dataService.saveAll(dataResolver.getDataList());
 
-        redirectAttributes.addFlashAttribute("driverP", driverP);
-
-        //TODO na jutro zaimplementowac mozliwosc wybierania dat na formatce displaydata i wyszukiwac dane z bazy od daty do daty
-        //TODO dodatkowo 2 buttony i jeden do wybierania dat, a drugi do inspekcji danych i zaczac implementowac inspekcje danych
-        //TODO zaimplementowac jakis error handling lepszy
+        redirectAttributes.addFlashAttribute("driver", driverP);
 
         return "redirect:/displaydata";
     }
@@ -100,23 +103,26 @@ public class DataController {
     * Display data
     * */
     @GetMapping("/displaydata")
-    public String displayData(Model model, /*@ModelAttribute("datalist") List<Data> dataList*/@ModelAttribute("driver") Driver driver, @ModelAttribute("since") String since, @ModelAttribute("to") String to) {
+    public String displayData(Model model, @ModelAttribute("driver") Driver driver, @ModelAttribute("since") String since, @ModelAttribute("to") String to, RedirectAttributes redirectAttributes) {
 
-        if (!since.isEmpty() && !to.isEmpty()) {
-            log.info("Od: " + since + ", Do: " + to);
-
-        } else if (!since.isEmpty() && to.isEmpty()) {
-            log.info("Od: " + since);
-
-        } else if (since.isEmpty() && !to.isEmpty()) {
-            log.info("Do: " + to);
-
-        } else {
-            if (driver.getDriverId() != null) {
-                model.addAttribute("datalist", dataService.findByDriverId(driver.getDriverId()));
+        if (driver.getDriverId() != null) {
+            if (!since.isEmpty() && !to.isEmpty()) {
+                log.debug("Od: " + since + ", do: " + to);
+                model.addAttribute("datalist", dataService.findDataSinceTo(since, to, driver.getDriverId()));
+            } else if (!since.isEmpty() && to.isEmpty()) {
+                String now = LocalDate.now().toString();
+                log.debug("Od: " + since + ", do: " + now);
+                model.addAttribute("datalist", dataService.findDataSinceTo(since, now, driver.getDriverId()));
+            } else if (since.isEmpty() && !to.isEmpty()) {
+                log.debug("Od: 1990-01-01" + ", do: " + to);
+                model.addAttribute("datalist", dataService.findDataSinceTo("1990-01-01", to, driver.getDriverId()));
             } else {
-                log.error("There was no driver selected");
+                List<Data> dataList = dataService.findByDriverId(driver.getDriverId());
+                model.addAttribute("datalist", dataList);
+                redirectAttributes.addFlashAttribute("datalist", dataList);
             }
+        } else {
+            log.error("There was no driver selected");
         }
 
         return "data/displaydata";
@@ -125,7 +131,6 @@ public class DataController {
     @PostMapping(value="/displaydata", params="choosedate")
     public String chooseDate(@ModelAttribute("since") String since, @ModelAttribute("to") String to, RedirectAttributes redirectAttributes) {
 
-//        log.info("Od: " + since + ", Do: " + to);
         redirectAttributes.addFlashAttribute("since", since);
         redirectAttributes.addFlashAttribute("to", to);
 

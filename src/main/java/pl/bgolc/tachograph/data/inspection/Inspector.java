@@ -1,4 +1,7 @@
-package pl.bgolc.tachograph.data;
+package pl.bgolc.tachograph.data.inspection;
+
+import pl.bgolc.tachograph.data.model.Data;
+import pl.bgolc.tachograph.data.model.WorkWeek;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -37,7 +40,7 @@ public enum Inspector {
     /*
      * Setting data list
      * */
-    public void setData(List<pl.bgolc.tachograph.data.Data> data) {
+    public void setData(List<Data> data) {
     	this.dataInput = Collections.unmodifiableList(data);
     }
     
@@ -48,6 +51,12 @@ public enum Inspector {
     public void checkData() {
 //    	sortWeeks();
 //    	checkWeek();
+        checkDays();
+    }
+
+    private void checkDays() {
+        List<Data> dataOutPut = dataInput;
+
 
     }
 
@@ -60,7 +69,7 @@ public enum Inspector {
             Duration weeklyDriveTimeDuration = Duration.ZERO;
 
             *//* Adding working time spent in a week *//*
-            for (pl.bgolc.tachograph.data.Data data : workWeeksList.get(i).getDataList()) {
+            for (pl.bgolc.tachograph.data.model.Data data : workWeeksList.get(i).getDataList()) {
                 if (data.getActivity().equals(Activities.DRIVE_TIME.getActivity()) || data.getActivity().equals(Activities.WORK.getActivity())) {
                     weeklyDriveTimeDuration = DurationManager.addTime(weeklyDriveTimeDuration, data.getTimeSpent());
                 }
@@ -137,8 +146,8 @@ public enum Inspector {
   /*  private void sortWeeks() {
         Duration breakDuration;                             //Duration of weekly break time
         WorkWeek tempWorkWeek;      						//Temp WeekOfWork to be added into weekOfWorkList
-        List<pl.bgolc.tachograph.data.Data> dataOutput;								//Data to be put in tempWeekOfWork
-        List<pl.bgolc.tachograph.data.Data> tempData = new ArrayList<pl.bgolc.tachograph.data.Data>();        //Temp data list to work with input data
+        List<pl.bgolc.tachograph.data.model.Data> dataOutput;								//Data to be put in tempWeekOfWork
+        List<pl.bgolc.tachograph.data.model.Data> tempData = new ArrayList<pl.bgolc.tachograph.data.model.Data>();        //Temp data list to work with input data
 
 *//*        for (Data temp : dataInput) {						//Filling tempData with inputData
             tempData.add(temp);
@@ -151,7 +160,7 @@ public enum Inspector {
         while (!tempData.isEmpty()){						//To sort data into weeks, until tempData isn's empty method removes elements from tempData and ads them to dataOutput
         	
             tempWorkWeek = new WorkWeek();
-            dataOutput = new ArrayList<pl.bgolc.tachograph.data.Data>();
+            dataOutput = new ArrayList<pl.bgolc.tachograph.data.model.Data>();
             int tempDataSize = tempData.size();
  
             for (int i=0; i<tempDataSize; i++) {
@@ -291,18 +300,18 @@ public enum Inspector {
      * TODO to be rewritten
      * */
   /*  private void checkTwoNextWeeks() {
-        List<pl.bgolc.tachograph.data.Data> twoWeeksData = new ArrayList<pl.bgolc.tachograph.data.Data>();
+        List<pl.bgolc.tachograph.data.model.Data> twoWeeksData = new ArrayList<pl.bgolc.tachograph.data.model.Data>();
         Duration duration;
 
-        for (pl.bgolc.tachograph.data.Data temp : dataInput) {
+        for (pl.bgolc.tachograph.data.model.Data temp : dataInput) {
             twoWeeksData.add(temp);
         }
 
         int j = 0;
         while (!twoWeeksData.isEmpty()) {
             duration = Duration.ZERO;
-            List<pl.bgolc.tachograph.data.Data> tempData = new ArrayList<pl.bgolc.tachograph.data.Data>();
-            for (pl.bgolc.tachograph.data.Data temp : twoWeeksData) {
+            List<pl.bgolc.tachograph.data.model.Data> tempData = new ArrayList<pl.bgolc.tachograph.data.model.Data>();
+            for (pl.bgolc.tachograph.data.model.Data temp : twoWeeksData) {
                 if (temp.getLocalDate().isBefore(twoWeeksData.get(0).getLocalDate().plusDays(ONE_WEEK)) || temp.getLocalDate().equals(twoWeeksData.get(0).getLocalDate().plusDays(ONE_WEEK))) {
                     tempData.add(temp);
                 }
@@ -316,7 +325,7 @@ public enum Inspector {
                 }
             }
 
-            for (pl.bgolc.tachograph.data.Data temp : tempData) {
+            for (pl.bgolc.tachograph.data.model.Data temp : tempData) {
                 if (temp.getActivity().equals(Activities.DRIVE_TIME) || temp.getActivity().equals(Activities.WORK)) {
                     //                timeSum = Adder.addTime(timeSum, temp.getTimeSpent());
                     duration = DurationManager.addTime(duration, temp.getTimeSpent());

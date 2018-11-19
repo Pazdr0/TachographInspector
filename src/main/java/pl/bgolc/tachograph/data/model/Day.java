@@ -1,4 +1,4 @@
-package pl.bgolc.tachograph.data.temporary;
+package pl.bgolc.tachograph.data.model;
 
 import java.util.ArrayList;
 import java.util.List;

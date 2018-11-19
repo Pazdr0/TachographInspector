@@ -1,20 +1,13 @@
-package pl.bgolc.tachograph.data;
+package pl.bgolc.tachograph.data.model;
 
 
-import pl.bgolc.tachograph.data.constants.Activities;
-import pl.bgolc.tachograph.data.constants.TimeRestrictions;
-import pl.bgolc.tachograph.data.temporary.Day;
-import pl.bgolc.tachograph.data.temporary.MisdemeanorsWeekly;
-import pl.bgolc.tachograph.operations.DurationManager;
-
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WorkWeek {
 
-    private List<pl.bgolc.tachograph.data.Data> dataList;
+    private List<Data> dataList;
     private List<Day> dayList;
     private LocalDate weekStart;
     private LocalDate weekEnd;
@@ -26,14 +19,14 @@ public class WorkWeek {
      * Constructor
      * */
 	public WorkWeek() {
-        dataList = new ArrayList<pl.bgolc.tachograph.data.Data>();
+        dataList = new ArrayList<Data>();
         dayList = new ArrayList<Day>();
         misdemeanorsWeekly = new MisdemeanorsWeekly();
     }
 
   /*  public void sortIntoDays() {
     	
-	    List<pl.bgolc.tachograph.data.Data> temp = new ArrayList<pl.bgolc.tachograph.data.Data>();
+	    List<pl.bgolc.tachograph.data.model.Data> temp = new ArrayList<pl.bgolc.tachograph.data.model.Data>();
 	    temp.addAll(dataList);
 
 	    for (int i=0; i<temp.size(); i++) {
@@ -109,7 +102,7 @@ public class WorkWeek {
     /*
      * Getters
      * */
-    public List<pl.bgolc.tachograph.data.Data> getDataList() {
+    public List<Data> getDataList() {
         return dataList;
     }
 
@@ -140,7 +133,7 @@ public class WorkWeek {
     /*
      * Setters
      * */
-    public void setDataList(List<pl.bgolc.tachograph.data.Data> dataList) {
+    public void setDataList(List<Data> dataList) {
         this.dataList = dataList;
     }
 

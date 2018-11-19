@@ -1,9 +1,5 @@
 package pl.bgolc.tachograph;
 
-import org.postgresql.util.PGInterval;
-import pl.bgolc.tachograph.data.DataResolver;
-import pl.bgolc.tachograph.data.Inspector;
-
 public class Main {
 
 

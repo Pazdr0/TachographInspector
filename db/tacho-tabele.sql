@@ -14,9 +14,8 @@ create table "tacho".dane(
 	upload_date date not null
 );
 
-alter table "tacho".users
+alter table "tacho".data
 	--alter column upload_data timestamp without time zone not null;
-	alter column roles varchar(10) not null default 'user'
+	alter column date date not null default 'user'
 
-drop table "tacho".dane;
 drop table "tacho".users

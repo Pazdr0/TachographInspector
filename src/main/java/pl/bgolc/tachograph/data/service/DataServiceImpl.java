@@ -1,10 +1,12 @@
-package pl.bgolc.tachograph.data;
+package pl.bgolc.tachograph.data.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.bgolc.tachograph.data.DataRepository;
-import pl.bgolc.tachograph.data.DataService;
+import pl.bgolc.tachograph.data.model.Data;
+import pl.bgolc.tachograph.data.repository.DataRepository;
+import pl.bgolc.tachograph.data.service.DataService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -24,8 +26,8 @@ class DataServiceImpl implements DataService {
 	}
 
 	@Override
-	public List<Data> findDataSinceTo(String since, String to) {
-		return null;
+	public List<Data> findDataSinceTo(String since, String to, int driverId) {
+		return dataRepository.findDataSinceTo(LocalDate.parse(since), LocalDate.parse(to), driverId);
 	}
 
 	@Override

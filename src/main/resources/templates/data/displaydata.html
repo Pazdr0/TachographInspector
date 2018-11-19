@@ -57,7 +57,7 @@
 		</nav>
 		<div class="mainwindow">
 			<h4 class="mainlabel">Dane Kierowcy</h4>
-			<form action="#" th:action="@{/displaydata}" method="post" >
+			<form action="#" th:action="@{/displaydata}" th:object="${datalist}" method="post" >
 				<div id="datechooser" class="container">
 					<div class="row">
 						<div class="col-xl-6 col-lg-6 col-md-6">

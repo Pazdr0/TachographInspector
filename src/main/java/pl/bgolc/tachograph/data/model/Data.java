@@ -1,6 +1,4 @@
-package pl.bgolc.tachograph.data;
-
-import pl.bgolc.tachograph.data.temporary.MisdemeanorsDaily;
+package pl.bgolc.tachograph.data.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +11,7 @@ import java.time.LocalTime;
  * */
 @Entity
 @Table(name="data")
-class Data implements Serializable {
+public class Data implements Serializable {
 
     @Transient
     private static final long serialVersionUID = 3L;

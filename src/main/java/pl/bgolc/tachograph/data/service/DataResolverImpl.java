@@ -1,4 +1,4 @@
-package pl.bgolc.tachograph.data;
+package pl.bgolc.tachograph.data.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.bgolc.tachograph.data.exceptions.DateTransformException;
 import pl.bgolc.tachograph.data.exceptions.TimeTransformException;
+import pl.bgolc.tachograph.data.model.Data;
 import pl.bgolc.tachograph.operations.MonthConvert;
 
 import java.io.*;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -82,7 +82,7 @@ class DataResolverImpl implements DataResolver {
         } catch (IOException ex) {
             log.error("IOException: " + ex.getMessage());
         } catch (Exception ex) {
-            log.error("String transforming exception: " + ex.getMessage());
+            log.error("Data: " + ex.getMessage());
         } finally {
             if (bufferedReader != null) {
                 try {
