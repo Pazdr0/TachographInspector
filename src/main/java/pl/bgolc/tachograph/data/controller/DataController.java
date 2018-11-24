@@ -62,22 +62,31 @@ public class DataController {
     * New data
     * */
     @GetMapping("/newdata")
-    public String newData(Model model, @ModelAttribute("driver") Driver driverP) {
+    public String newData(Model model, @ModelAttribute("driver") Driver driverP,
+                          @RequestParam(name = "attached", defaultValue = "false") boolean fileattached, @RequestParam(name = "drivernotadded", defaultValue = "false") boolean driveradded) {
 
         model.addAttribute("drivers", driverService.findByUserId(userCredentials.getUserId()));
+        model.addAttribute("attached", fileattached);
+        model.addAttribute("drivernotadded", driveradded);
 
         return "data/newdata";
     }
 
     @PostMapping("/newdata")
-    public String newDataSubmit(@ModelAttribute("driverP") Driver driverP, RedirectAttributes redirectAttributes, @RequestParam("file")MultipartFile multipartFile) {
+    public String newDataSubmit(@ModelAttribute("driver") Driver driver, RedirectAttributes redirectAttributes, @RequestParam("file")MultipartFile multipartFile) {
 
-        dataResolver.downloadDataFromFile(driverP.getDriverId(), multipartFile);
+        if (multipartFile.isEmpty()) {
+            return "redirect:/newdata?attached=true";
+        }
+        if (driver.getDriverId() == null) {
+            return "redirect:/newdata?drivernotadded=true";
+        }
+
+        dataResolver.downloadDataFromFile(driver.getDriverId(), multipartFile);
         dataService.saveAll(dataResolver.getDataList());
+        redirectAttributes.addFlashAttribute("driver", driver);
 
-        redirectAttributes.addFlashAttribute("driver", driverP);
-
-        return "redirect:/displaydata";
+        return "redirect:/displaydata?added=true";
     }
 
     /*
@@ -103,7 +112,10 @@ public class DataController {
     * Display data
     * */
     @GetMapping("/displaydata")
-    public String displayData(Model model, @ModelAttribute("driver") Driver driver, @ModelAttribute("since") String since, @ModelAttribute("to") String to, RedirectAttributes redirectAttributes) {
+    public String displayData(Model model, @ModelAttribute("driver") Driver driver, @ModelAttribute("since") String since, @ModelAttribute("to") String to,
+                              RedirectAttributes redirectAttributes, @RequestParam(value = "added", defaultValue = "false") boolean added) {
+
+        model.addAttribute("added", added);
 
         if (driver.getDriverId() != null) {
             if (!since.isEmpty() && !to.isEmpty()) {

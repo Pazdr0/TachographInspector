@@ -15,14 +15,16 @@
 	<link rel="stylesheet"
 		type="text/css"
 		th:href="@{css/user/registered.css}"
-		href="../static/css/user/registered.css" />
+		href="../../static/css/user/registered.css" />
 </head>
 <body>
 
 	<div class="mainwindow">
-		<h3>Dziękujemy za rejestracje</h3>
-		<p>Na Twoją skrzynkę pocztową została wysłana wiadomość z potwierdzeniem rejestracji</p>
-		<a id="link" th:href="@{/login}" href="login.html">Powrót do logowania</a>
+		<h4 class="mainlabel">Dziękujemy za rejestracje</h4>
+		<div id="registered">
+			<p>Na Twoją skrzynkę pocztową została wysłana wiadomość z potwierdzeniem rejestracji</p>
+			<a id="link" th:href="@{/login}" href="login.html">Powrót do logowania</a>
+		</div>
 	</div>
 
 	<footer>

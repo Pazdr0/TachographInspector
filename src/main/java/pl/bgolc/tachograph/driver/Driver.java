@@ -1,6 +1,7 @@
 package pl.bgolc.tachograph.driver;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="drivers")
@@ -13,9 +14,11 @@ public class Driver {
     @Column(name="user_id")
     private Integer userId;
 
+    @NotBlank(message = "Pole imie nie może byc puste")
     @Column(name="first_name")
     private String firstName;
 
+    @NotBlank(message = "Pole nazwisko nie może byc puste")
     @Column(name="surname")
     private String surname;
 

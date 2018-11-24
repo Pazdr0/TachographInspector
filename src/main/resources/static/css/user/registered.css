@@ -10,3 +10,8 @@
 #link {
     text-align: left;
 }
+
+div#registered {
+    text-align: center;
+    margin-top: 30px;
+}

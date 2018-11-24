@@ -5,6 +5,8 @@ select * from "tacho".drivers;
 
 select * from "tacho".data where driver_id = 3;
 
+select * from "tacho".verification_token;
+
 --tabele delete
 delete from "tacho".data;
 
@@ -17,8 +19,8 @@ select upload_data ('tachograf', 'adasdasdsadsad sadsad ads aasds asda sdasd asd
 
 --zapytania
 select * from "tacho".users
-		where (username = 'pazdr0' or email = 'postgres')
-		and passwd = crypt('hakerek', passwd);
+where (username = 'pazdr0' or email = 'postgres')
+  and passwd = crypt('', passwd);
 
 select id from "tacho".users where username = 'tachograf';
 
@@ -31,10 +33,22 @@ insert into "tacho".drivers (user_id, first_name, surname) values ((select id fr
 
 --inne
 update "tacho".users
-	set roles = 'USER',
-	 	enabled = true
-	where username = 'tacho';
-	
-select now()
+set roles = 'USER',
+    enabled = false
+where id = 46;
 
-  
+
+
+select now();
+
+select * from "tacho".search_data('2017-06-08', '2017-06-20');
+
+select * from "tacho".search_data(_since, _to);
+
+select "tacho".register('kuba', 'kuba@wp.pl', 'kuba', true);
+
+
+
+insert into "tacho".verification_token(user_id, token, expiry_date) VALUES (6, 'sdfadsf', (select now()));
+
+select "tacho".enable_user(46);

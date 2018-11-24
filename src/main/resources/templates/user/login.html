@@ -36,7 +36,7 @@
 					<div th:if="${param.error}" class="alert alert-error">
 						Niepoprawny login lub hasło
 					</div>
-					<div th:if="${param.logout}" class="alert alert-logout">
+					<div th:if="${param.logout}" class="alert alert-info">
 						Wylogowano
 					</div>
 					<form action="#" th:action="@{/login}" method="post">

@@ -23,7 +23,7 @@ end;
 $registered$ language plpgsql
 -----------------------------------------------------------------------------------------------------------------
 																										   
---Login----------------------------------------------------------------------------------------------------------						   
+--Login - Deprecated----------------------------------------------------------------------------------------------
 create or replace function "tacho".login (_login varchar(30), _passwd varchar(200))
 	returns boolean as $loggedd$
 declare 
@@ -43,30 +43,16 @@ end;
 $loggedd$ language plpgsql
 -----------------------------------------------------------------------------------------------------------------							   
 							   
---Upload Data----------------------------------------------------------------------------------------------------						   
-create or replace function upload_data(_username varchar(30), _dane varchar(1000)) 
-	returns boolean as $uploaded$
-declare 
-	uploaded boolean;
+create or replace function "tacho".enableRegisteredUser(_user_id integer)
+ returns boolean as $enabled$
+declare
+ enabled boolean;
 begin
-	insert into "tacho".dane (usr_id, dane, upload_date) 
-		values ((select id from "tacho".users where username = _username), _dane, date_trunc('second', now()));
-	return true;
+ update "tacho".users
+  set enabled = true
+  where id = _user_id;
+
+  enabled = true;
+ return enabled
 end;
-$uploaded$ language plpgsql
------------------------------------------------------------------------------------------------------------------
-
---Get Drivers----------------------------------------------------------------------------------------------------																						 
-create or replace function get_drivers(_)
-
-
---Import Data----------------------------------------------------------------------------------------------------						   
-create or replace function import_data(_username)
-																							 
-																							 
---Import Data 2--------------------------------------------------------------------------------------------------						   
-create or replace function import_data(_username, _date)																						 
-																							 
-																	 
-																							 
-																							 
+$enabled$ language plpgsql

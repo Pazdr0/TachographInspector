@@ -54,7 +54,6 @@ public class Main {
             System.out.println(tempList.size());
         }*/
 
-        //TODO w controlerze przekazac dane do Serwisu zapisującego danego na bazie lub zrobić to w klasie DataResolverImpl, ale chyba bedzie to mniej czytelne
         
 //        inspector.displayWeeksOfWork();
         

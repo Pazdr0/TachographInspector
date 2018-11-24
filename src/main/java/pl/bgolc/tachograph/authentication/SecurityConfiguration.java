@@ -65,6 +65,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .antMatchers("/remindpass")
                     .permitAll()
+                    .antMatchers("/registrationConfirm")
+                    .permitAll()
                     .anyRequest()
                     .fullyAuthenticated()
                     .and()

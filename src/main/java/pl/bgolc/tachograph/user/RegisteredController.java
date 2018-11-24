@@ -12,6 +12,4 @@ public class RegisteredController {
     public String registered() {
         return "user/registered";
     }
-
-    //TODO napisac funkcje, ktora bedzie wysylala maila z linkiem do aktywacji konta
 }

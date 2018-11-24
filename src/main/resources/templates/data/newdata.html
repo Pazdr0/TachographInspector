@@ -59,6 +59,8 @@
 			<h4 class="mainlabel">Wybierz Kierowce</h4>
 			<div class="divtable">
 				<form action="#" th:action="@{/newdata}" th:object="${driver}" enctype="multipart/form-data" method="post">
+					<div class="alert alert-info" th:if="${attached}">Nie wybrano pliku</div>
+					<div class="alert alert-info" th:if="${drivernotadded}">Nie wybrano kierowcy</div>
 					<div class="scrollable">
 						<table class="driverstable">
 							<tr>

@@ -1,5 +1,7 @@
 package pl.bgolc.tachograph.driver;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import java.util.List;
 @Service
 public class DriverServiceImpl implements DriverService {
 
+    private Logger log = LoggerFactory.getLogger(DriverServiceImpl.class);
     /*
     * Components
     * */
@@ -38,13 +41,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public void save(Driver driver) {
+        log.debug("Saving driver to db");
         driverRepository.save(driver);
-/*
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-        return true;
-*/
     }
 }

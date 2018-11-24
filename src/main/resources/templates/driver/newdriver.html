@@ -56,10 +56,13 @@
 			<h4 class="mainlabel">Wprowadź nowego kierowce</h4>
 			<div class="inputwindow">
 				<form action="#" th:action="@{/newdriver}" th:object="${driver}" modelAttribute="driver" method="post">
+					<div class="alert alert-error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+					<div class="alert alert-error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+					<div class="alert alert-info" th:if="${added}">Dodano kierowce</div>
 					<label for="firstName">Imie</label>
-					<input type="text" th:field="*{firstName}" placeholder="Wprowadź imie" required>
+					<input type="text" autocomplete="off" th:field="*{firstName}" placeholder="Wprowadź imie" required>
 					<label for="surname">Nazwisko</label>
-					<input type="text" th:field="*{surname}" placeholder="Wprowadź nazwisko" required>
+					<input type="text" autocomplete="off" th:field="*{surname}" placeholder="Wprowadź nazwisko" required>
 					<button id="submitButton" type="submit">Wprowadź</button>
 				</form>
 			</div>

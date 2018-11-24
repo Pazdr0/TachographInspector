@@ -42,3 +42,8 @@ button.choose2 {
 button.choose2:hover {
 	opacity: 0.8;
 }
+
+.alert-info {
+    width: 80%;
+    margin: auto;
+}
