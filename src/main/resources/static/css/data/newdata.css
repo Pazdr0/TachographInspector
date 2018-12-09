@@ -20,3 +20,17 @@ div.scrollable {
     margin: auto;
     margin-bottom: 10px;
 }
+
+div.choosebutton {
+    margin: auto;
+    width: 80%;
+}
+
+button.choose1 {
+    margin: auto;
+    width: 49%;
+}
+
+button.choose2 {
+    margin-left: 1%;
+}

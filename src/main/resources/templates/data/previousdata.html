@@ -60,6 +60,7 @@
 			<h4 class="mainlabel">Wybierz Kierowce</h4>
 			<div class="divtable">
 				<form action="#" th:action="@{/previousdata}" th:object="${driver}" method="post">
+					<div class="alert alert-info" th:if="${drivernotadded}">Nie wybrano kierowcy</div>
 					<div class="scrollable">
 						<table class="driverstable">
 							<tr class="myrow">
@@ -77,7 +78,8 @@
 						</table>
 					</div>
 					<div class="choosebutton">
-						<button class="choose" type="submit" name="submit">Wybierz</button>
+						<button class="choose" type="submit" name="dailydata">Dane dzienne</button>
+						<button class="choose" type="submit" name="alldata">Wszystkie dane</button>
 					</div>
 				</form>
 			</div>

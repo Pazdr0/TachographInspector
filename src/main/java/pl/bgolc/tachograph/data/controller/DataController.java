@@ -21,12 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"driver", "datalist"})
+@SessionAttributes("driver")
 public class DataController {
 
-    /*
-    * Components
-    * */
     private Logger log = LoggerFactory.getLogger(DataController.class);
 
     private DataService dataService;
@@ -50,14 +47,6 @@ public class DataController {
         return new Driver();
     }
 
-    @ModelAttribute("datalist")
-    public List<Data> dataList() {
-        return new ArrayList<Data>();
-    }
-
-    /*
-    * Model
-    * */
     /*
     * New data
     * */
@@ -72,7 +61,7 @@ public class DataController {
         return "data/newdata";
     }
 
-    @PostMapping("/newdata")
+    @PostMapping(value = "/newdata", params = "alldata")
     public String newDataSubmit(@ModelAttribute("driver") Driver driver, RedirectAttributes redirectAttributes, @RequestParam("file")MultipartFile multipartFile) {
 
         if (multipartFile.isEmpty()) {
@@ -89,69 +78,59 @@ public class DataController {
         return "redirect:/displaydata?added=true";
     }
 
+    @PostMapping(value = "/newdata", params = "dailydata")
+    public String newDataSubmit2(@ModelAttribute("driver") Driver driver, RedirectAttributes redirectAttributes, @RequestParam("file")MultipartFile multipartFile) {
+
+        if (multipartFile.isEmpty()) {
+            return "redirect:/newdata?attached=true";
+        }
+        if (driver.getDriverId() == null) {
+            return "redirect:/newdata?drivernotadded=true";
+        }
+
+        dataResolver.downloadDataFromFile(driver.getDriverId(), multipartFile);
+        dataService.saveAll(dataResolver.getDataList());
+        redirectAttributes.addFlashAttribute("driver", driver);
+
+        return "redirect:/displaydailydata?added=true";
+    }
+
     /*
     * Previous data
     * */
     @GetMapping("/previousdata")
-    public String prevData(Model model, @ModelAttribute("driver") Driver driverP) {
+    public String prevData(Model model, @ModelAttribute("driver") Driver driver, @RequestParam(name = "drivernotadded", defaultValue = "false") boolean driveradded) {
 
+        model.addAttribute("drivernotadded", driveradded);
         model.addAttribute("drivers", driverService.findByUserId(userCredentials.getUserId()));
 
         return "data/previousdata";
     }
 
-    @PostMapping("/previousdata")
-    public String prevDataSubmit(@ModelAttribute("driver") Driver driverP, RedirectAttributes redirectAttributes) {
+    @PostMapping(value = "/previousdata", params = "alldata")
+    public String prevDataSubmit(@ModelAttribute("driver") Driver driver, RedirectAttributes redirectAttributes) {
 
-        redirectAttributes.addFlashAttribute("driver", driverP);
-
-        return "redirect:/displaydata";
-    }
-
-    /*
-    * Display data
-    * */
-    @GetMapping("/displaydata")
-    public String displayData(Model model, @ModelAttribute("driver") Driver driver, @ModelAttribute("since") String since, @ModelAttribute("to") String to,
-                              RedirectAttributes redirectAttributes, @RequestParam(value = "added", defaultValue = "false") boolean added) {
-
-        model.addAttribute("added", added);
-
-        if (driver.getDriverId() != null) {
-            if (!since.isEmpty() && !to.isEmpty()) {
-                log.debug("Od: " + since + ", do: " + to);
-                model.addAttribute("datalist", dataService.findDataSinceTo(since, to, driver.getDriverId()));
-            } else if (!since.isEmpty() && to.isEmpty()) {
-                String now = LocalDate.now().toString();
-                log.debug("Od: " + since + ", do: " + now);
-                model.addAttribute("datalist", dataService.findDataSinceTo(since, now, driver.getDriverId()));
-            } else if (since.isEmpty() && !to.isEmpty()) {
-                log.debug("Od: 1990-01-01" + ", do: " + to);
-                model.addAttribute("datalist", dataService.findDataSinceTo("1990-01-01", to, driver.getDriverId()));
-            } else {
-                List<Data> dataList = dataService.findByDriverId(driver.getDriverId());
-                model.addAttribute("datalist", dataList);
-                redirectAttributes.addFlashAttribute("datalist", dataList);
-            }
-        } else {
-            log.error("There was no driver selected");
+        if (driver.getDriverId() == null) {
+            return "redirect:/previousdata?drivernotadded=true";
         }
 
-        return "data/displaydata";
-    }
-
-    @PostMapping(value="/displaydata", params="choosedate")
-    public String chooseDate(@ModelAttribute("since") String since, @ModelAttribute("to") String to, RedirectAttributes redirectAttributes) {
-
-        redirectAttributes.addFlashAttribute("since", since);
-        redirectAttributes.addFlashAttribute("to", to);
+        redirectAttributes.addFlashAttribute("driver", driver);
 
         return "redirect:/displaydata";
     }
 
-    @PostMapping(value="/displaydata", params="validate")
-    public String validateDate() {
+    @PostMapping(value = "/previousdata", params = "dailydata")
+    public String prevDataSubmit2(@ModelAttribute("driver") Driver driver, RedirectAttributes redirectAttributes) {
 
-        return "redirect:/validatedata";
+        if (driver.getDriverId() == null) {
+            return "redirect:/previousdata?drivernotadded=true";
+        }
+
+        redirectAttributes.addFlashAttribute("driver", driver);
+
+        return "redirect:/displaydailydata";
     }
+
+
+
 }

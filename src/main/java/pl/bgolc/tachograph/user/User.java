@@ -43,6 +43,7 @@ public class User implements Serializable {
     @Column(name = "enabled")
     private boolean enabled;
 
+    //Standard Constructors, Getters and Setters
     /*
      * Constructors
      * */

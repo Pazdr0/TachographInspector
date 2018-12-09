@@ -1,8 +1,16 @@
-package pl.bgolc.tachograph.data.inspection;
+package pl.bgolc.tachograph.data.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import pl.bgolc.tachograph.data.constants.Activities;
+import pl.bgolc.tachograph.data.constants.TimeRestrictions;
 import pl.bgolc.tachograph.data.model.Data;
+import pl.bgolc.tachograph.data.model.Day;
 import pl.bgolc.tachograph.data.model.WorkWeek;
+import pl.bgolc.tachograph.operations.DurationManager;
 
+import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,42 +20,101 @@ import java.util.List;
 /*
  * Class validating drivers working time
  * */
-public enum Inspector {
+@Service
+public class DataInspectorImpl implements DataInspector {
 
-	INSTANCE;
-	
-    private static final String TIME_FORMATTER = "H:m";		//Time formatter for DateTimeFormatter
+
+
+/*    private static final String TIME_FORMATTER = "H:m";		//Time formatter for DateTimeFormatter
     private static final int TWO_WEEKS = 14;
     private static final int ONE_WEEK = 7;
     private List<Data> dataInput;						    //Input data from constructor, set as unmodifiable and final so the data doesn't get mixed up
-    private List<WorkWeek> workWeeksList;					//Input data sorted into weeks of work are saved here
+    private List<WorkWeek> workWeeksList;		*/			//Input data sorted into weeks of work are saved here
 
-    
+    private Logger log = LoggerFactory.getLogger(DataInspectorImpl.class);
+
+    private List<Day> dayList;
+
     /*
-     * private Constructor for singleton
+     * Constructor
      * */
-    private Inspector() {
-        workWeeksList = new ArrayList<WorkWeek>();
+    public DataInspectorImpl() {
+        /*workWeeksList = new ArrayList<WorkWeek>();*/
     }
     
     /*
-     * Method to get singleton
-     * */
-    public static Inspector getInstance() {
-        return Inspector.INSTANCE;
+    * Methods
+    * */
+    @Override
+    public List<Day> checkDays(List<Day> dayList) {
+
+        for (Day day : dayList) {
+            for (Data data : day.getDataList()) {
+                if (data.getActivity().equals(Activities.DRIVE_TIME.getActivity())) {
+                    if (DurationManager.compareDuration(DurationManager.transformLocalTimeToDuration(data.getTimeSpent()), TimeRestrictions.MAX_ONE_TIME_DRIVE)) {
+                        day.getMisdemeanorsDaily().setExceededOneTimeDrive(true);
+                        log.info("Max one time drive has been exceeded");
+                    }
+                }
+            }
+        }
+
+        for (Day day : dayList) {
+            Duration dailyDriveTimeDuration = Duration.ZERO;
+            for (Data data : day.getDataList()) {
+                if (data.getActivity().equals(Activities.DRIVE_TIME.getActivity()) || data.getActivity().equals(Activities.WORK.getActivity())) {
+                    dailyDriveTimeDuration = DurationManager.addLocalTime(dailyDriveTimeDuration, data.getTimeSpent());
+                }
+            }
+            if (DurationManager.compareDuration(dailyDriveTimeDuration, TimeRestrictions.MAX_DAILY_DRIVE_TIME_EXTENDED)) {
+                day.getMisdemeanorsDaily().setExceededDailyDriveTime(true);
+                log.info("Daily drive time has been exceeded");
+            }
+        }
+
+        for (Day day : dayList) {
+            Duration dailyBreakTimeDuration = Duration.ZERO;
+            for (Data data : day.getDataList()) {
+                if (data.getActivity().equals(Activities.BREAK.getActivity())) {
+                    dailyBreakTimeDuration = DurationManager.addLocalTime(dailyBreakTimeDuration, data.getTimeSpent());
+                }
+            }
+            if (!DurationManager.compareDuration(dailyBreakTimeDuration, TimeRestrictions.DAILY_BREAK_SHORTENED)) {
+                day.getMisdemeanorsDaily().setInsufficientDailyBreak(true);
+                log.info("Daily break time has been insufficient");
+            }
+        }
+        return dayList;
     }
 
-    /*
+
+
+
+
+
+
+    public List<Day> getDayList() {
+        return dayList;
+    }
+
+    public void setDayList(List<Day> dayList) {
+        this.dayList = dayList;
+    }
+
+
+
+
+/*    *//*
      * Setting data list
-     * */
+     * *//*
     public void setData(List<Data> data) {
     	this.dataInput = Collections.unmodifiableList(data);
     }
     
-    /*
+    *//*
      * Main method (and only one public) for checking data
      * It calls other methods in right order
-     * */
+     * *//*
     public void checkData() {
 //    	sortWeeks();
 //    	checkWeek();
@@ -58,7 +125,7 @@ public enum Inspector {
         List<Data> dataOutPut = dataInput;
 
 
-    }
+    }*/
 
     /*
      * Method checking weekly restrictions
@@ -231,7 +298,7 @@ public enum Inspector {
      * temp method
      * TODO to be deleted
      * */
-    public void displayDayList() {
+/*    public void displayDayList() {
         WorkWeek week = workWeeksList.get(0);
 
         for (int i=0; i<week.getDayList().size(); i++) {
@@ -242,20 +309,20 @@ public enum Inspector {
                 System.out.println(week.getDayList().get(i).getTimeSpentList().get(j));
             }
         }
-    }
+    }*/
 
-    /* 
+/*    *//*
      * TODO delete if it becomes useless
-     * */
+     * *//*
     public void displayWeeksOfWork() {
 //        int i = 1;
         int j = 1;
-        /*for (WorkWeek temp : workWeeksList) {
+        *//*for (WorkWeek temp : workWeeksList) {
             System.out.print(i++ + " tydzien pracy");
             for (Data tempData : temp.getDataList()) {
                 System.out.println(j++ + " " + tempData.getTimeSpent());
             }
-        }*/
+        }*//*
         
         System.out.println(workWeeksList.size() + ", list 1 size: " + workWeeksList.get(0).getDataList().size() + ", list 2 size: " + workWeeksList.get(1).getDataList().size() 
         		+ ", list 3 size: " + workWeeksList.get(2).getDataList().size() + ", list 4 size: " + workWeeksList.get(3).getDataList().size());
@@ -278,23 +345,23 @@ public enum Inspector {
     	 		System.out.print(workWeeksList.get(3).getDataList().get(j).getTimeSpent());
     		}
         }
-    }
+    }*/
 
-    /*
+/*    *//*
      * TODO to be rewritten
-     * */
+     * *//*
     private boolean checkOneTimeDrive(String timeSpent) {
         LocalTime time = LocalTime.parse(timeSpent, DateTimeFormatter.ofPattern(TIME_FORMATTER));
-      /*  LocalTime maxOneTimeDrive = LocalTime.parse(Restrictions.MAX_ONE_TIME_DRIVE, DateTimeFormatter.ofPattern(TIME_FORMATTER));
+      *//*  LocalTime maxOneTimeDrive = LocalTime.parse(Restrictions.MAX_ONE_TIME_DRIVE, DateTimeFormatter.ofPattern(TIME_FORMATTER));
 
         if (time.isBefore(maxOneTimeDrive) || time.equals(maxOneTimeDrive)) {
 //            System.out.println("Przepisowo, czas jazdy: " + time.toString());
             return false;
         } else {
 //            System.out.println("Wykroczenie");
-*/            return true;
+*//*            return true;
        
-    }
+    }*/
 
     /*
      * TODO to be rewritten

@@ -14,11 +14,6 @@ class DataServiceImpl implements DataService {
 
 	@Autowired
 	private DataRepository dataRepository;
-	
-	@Override
-	public void saveData() {
-
-	}
 
 	@Override
 	public List<Data> findByDriverId(int driverId) {

@@ -5,7 +5,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 
 @Configuration
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(jsr250Enabled = true, securedEnabled = true)
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
 
     //TODO dopracować, doczytać o zabezpieczeniach metod

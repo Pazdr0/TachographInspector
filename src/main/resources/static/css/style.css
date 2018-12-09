@@ -60,3 +60,7 @@ div.mainwindow {
 .alert-info {
 	background-color: rgba(122, 122, 122, 0.62);
 }
+
+.alert-logout {
+	background-color: rgba(122, 122, 122, 0.62);
+}

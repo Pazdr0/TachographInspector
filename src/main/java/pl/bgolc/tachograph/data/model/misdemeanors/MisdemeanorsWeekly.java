@@ -1,4 +1,4 @@
-package pl.bgolc.tachograph.data.model;
+package pl.bgolc.tachograph.data.model.misdemeanors;
 
 /*
  * Broken weekly restrictions

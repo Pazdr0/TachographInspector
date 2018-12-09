@@ -30,6 +30,7 @@ public class RegistrationController {
     public String control() {
         return "redirect:/register";
     }
+
     @GetMapping("/registrationConfirm")
     public String confirmRegistration(WebRequest webRequest, Model model, @RequestParam("token") String token) {
 
@@ -43,16 +44,9 @@ public class RegistrationController {
 
         log.debug("Found token: " + token);
 
-/*        Calendar calendar = Calendar.getInstance();
-
-        if ((verificationToken.getExpiryDate().getTime() - calendar.getTime().getTime()) <= 0) {
-            log.debug("Verification email expired");
-            return "redirect:.register";
-        }*/
-
         LocalDateTime now = LocalDateTime.now();
 
-        if (!now.isBefore(verificationToken.calculateExpiryDate())) {
+        if (!now.isBefore(verificationToken.getLocalExpiryDate())) {
             log.error("Verification email expired");
             return "redirect:/register";
         }

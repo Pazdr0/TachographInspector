@@ -6,13 +6,10 @@ import java.util.List;
 
 public interface DataService {
 
-	void saveData();
-
 	List<Data> findByDriverId(int driverId);
 
 	List<Data> findDataSinceTo(String since, String to, int driverId);
 
 	void saveAll(List<Data> dataList);
-
 
 }

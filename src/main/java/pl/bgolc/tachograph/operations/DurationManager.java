@@ -1,6 +1,7 @@
 package pl.bgolc.tachograph.operations;
 
 import java.time.Duration;
+import java.time.LocalTime;
 
 import pl.bgolc.tachograph.data.constants.TimeRestrictions;
 
@@ -25,6 +26,10 @@ public final class DurationManager {
         return timeSum.plus(Duration.ofHours(Integer.parseInt(timeComponents[0])).plusMinutes(Integer.parseInt(timeComponents[1])));
     }
 
+    public static Duration addLocalTime(Duration timeSum, LocalTime timeToAdd) {
+        return timeSum.plus(Duration.ofHours(timeToAdd.getHour()).plusMinutes(timeToAdd.getMinute()));
+    }
+
     public static Duration transformToDuration(String timeToTransform) {
         String[] timeComponents = timeToTransform.split(":");
         Duration duration = Duration.ZERO;
@@ -34,17 +39,14 @@ public final class DurationManager {
         return duration;
     }
 
-    /*
-     * Method to compare duration with restriction
-     * */
-/*    public static boolean compareDuration(Duration duration, int restriction) {
-        if (duration.toMinutes() >= restriction) {
-            return true;
-        } else {
-            return false;
-        }
-    }*/
-    
+    public static Duration transformLocalTimeToDuration(LocalTime timeToTransform) {
+        Duration duration = Duration.ZERO;
+
+        duration = duration.plus(Duration.ofHours(timeToTransform.getHour()).plusMinutes(timeToTransform.getMinute()));
+
+        return duration;
+    }
+
     /*
      * Method to compare duration with restriction (using Enums) updated
      * */

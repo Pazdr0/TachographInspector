@@ -1,75 +1,63 @@
 package pl.bgolc.tachograph.data.model;
 
+import pl.bgolc.tachograph.data.model.misdemeanors.MisdemeanorsDaily;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Day {
 
-//    private LocalDate localDate;
-//    private List<Data> dataList;
-    private int index;
-    private List<String> activityList;
-    private List<String> timeSpentList;
+
+    private List<Data> dataList;
+    private LocalDate localDate;
+    private MisdemeanorsDaily misdemeanorsDaily;
+
+//    private int index;
+//    private List<String> activityList;
+//    private List<String> timeSpentList;
 
     /*
      * Constructor
      * */
-    protected Day() {
-//        dataList = new ArrayList<Data>();
-        this.activityList = new ArrayList<String>();
-        this.timeSpentList = new ArrayList<String>();
+    public Day() {
+        dataList = new ArrayList<Data>();
+        misdemeanorsDaily = new MisdemeanorsDaily();
     }
 
-    /*
-     * Methods
-     * */
-    public void addActivity(String activity) {
-        activityList.add(activity);
+    public String checkMisdemeanors() {
+        if (misdemeanorsDaily.isExceededDailyDriveTime() || misdemeanorsDaily.isExceededOneTimeDrive() || misdemeanorsDaily.isInsufficientDailyBreak()) {
+            return "tak";
+        }
+        return "nie";
     }
-
-    public void addTimeSpent(String timeSpent) {
-        timeSpentList.add(timeSpent);
-    }
-
     /*
      * Getters
      * */
+    public List<Data> getDataList() {
+        return dataList;
+    }
 
-/*     public LocalDate getLocalDate() {
+    public LocalDate getLocalDate() {
         return localDate;
-    }*/
-
-    public int getIndex() {
-        return index;
     }
 
-    public List<String> getActivityList() {
-        return activityList;
+    public MisdemeanorsDaily getMisdemeanorsDaily() {
+        return misdemeanorsDaily;
     }
-
-    public List<String> getTimeSpentList() {
-        return timeSpentList;
-    }
-
-
 
     /*
      * Setters
      * */
+    public void setDataList(List<Data> dataList) {
+        this.dataList = dataList;
+    }
 
-/*    public void setLocalDate(LocalDate localDate) {
+    public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
-    }*/
-
-    public void setIndex(int index) {
-        this.index = index;
     }
 
-    public void setActivityList(List<String> activity) {
-        this.activityList = activity;
-    }
-
-    public void setTimeSpentList(List<String> timeSpent) {
-        this.timeSpentList = timeSpent;
+    public void setMisdemeanorsDaily(MisdemeanorsDaily misdemeanorsDaily) {
+        this.misdemeanorsDaily = misdemeanorsDaily;
     }
 }

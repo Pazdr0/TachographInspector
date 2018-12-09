@@ -1,5 +1,7 @@
 package pl.bgolc.tachograph.data.model;
 
+import pl.bgolc.tachograph.data.model.misdemeanors.MisdemeanorsDaily;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -11,7 +13,7 @@ import java.time.LocalTime;
  * */
 @Entity
 @Table(name="data")
-public class Data implements Serializable {
+public class Data implements Serializable, Comparable<Data>{
 
     @Transient
     private static final long serialVersionUID = 3L;
@@ -38,19 +40,24 @@ public class Data implements Serializable {
     @Column(name="time_spent")
     private LocalTime timeSpent;
 
-    @Transient
-    private MisdemeanorsDaily misdemeanors;
+/*    @Transient
+    private MisdemeanorsDaily misdemeanors;*/
 
     /*
      * Constructors
      * */
     public Data () {
-        misdemeanors = new MisdemeanorsDaily();
+        /*misdemeanors = new MisdemeanorsDaily();*/
     }
 
     public Data(int driverId) {
         this.driverId = driverId;
-        misdemeanors = new MisdemeanorsDaily();
+        /*misdemeanors = new MisdemeanorsDaily();*/
+    }
+
+    @Override
+    public int compareTo(Data o) {
+        return localDate.compareTo(o.localDate);
     }
 
     /*
@@ -84,9 +91,9 @@ public class Data implements Serializable {
         return timeSpent;
     }
 
-    public MisdemeanorsDaily getMisdemeanors() {
+  /*  public MisdemeanorsDaily getMisdemeanors() {
         return misdemeanors;
-    }
+    }*/
 
     /*
      * Setters
@@ -119,7 +126,7 @@ public class Data implements Serializable {
         this.timeSpent = timeSpent;
     }
 
-    public void setMisdemeanors(MisdemeanorsDaily misdemeanors) {
+    /*public void setMisdemeanors(MisdemeanorsDaily misdemeanors) {
         this.misdemeanors = misdemeanors;
-    }
+    }*/
 }

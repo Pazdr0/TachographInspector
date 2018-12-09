@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
-import pl.bgolc.tachograph.authentication.AuthenticationFacadeService;
 import pl.bgolc.tachograph.user.verification.OnRegistrationCompleteEvent;
 
 import javax.validation.Valid;
@@ -25,13 +24,11 @@ public class RegisterController {
 
     private UserService userService;
     private ApplicationEventPublisher applicationEventPublisher;
-    private AuthenticationFacadeService authenticationFacadeService;
 
     @Autowired
-    public RegisterController(UserService userService, ApplicationEventPublisher applicationEventPublisher, AuthenticationFacadeService authenticationFacadeService) {
+    public RegisterController(UserService userService, ApplicationEventPublisher applicationEventPublisher) {
         this.userService = userService;
         this.applicationEventPublisher = applicationEventPublisher;
-        this.authenticationFacadeService = authenticationFacadeService;
     }
 
     @GetMapping

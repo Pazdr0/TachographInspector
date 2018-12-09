@@ -6,7 +6,7 @@ public class Main {
 	public static void main(String[] args) {
 //		DataResolver dataResolver = new DataResolverImpl();
 //        dataResolver.downloadDataFromFile("C:\\Users\\bgolc\\Documents\\Docs\\PKK_cze_2017.csv");
-//        Inspector inspector = Inspector.getInstance();
+//        DataInspectorImpl inspector = DataInspectorImpl.getInstance();
 //        inspector.setData(dataResolver.getDataList());
                 
 //        inspector.checkData();

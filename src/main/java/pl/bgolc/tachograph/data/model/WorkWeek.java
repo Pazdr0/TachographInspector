@@ -1,6 +1,8 @@
 package pl.bgolc.tachograph.data.model;
 
 
+import pl.bgolc.tachograph.data.model.misdemeanors.MisdemeanorsWeekly;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
