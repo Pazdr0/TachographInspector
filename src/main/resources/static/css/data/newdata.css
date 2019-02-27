@@ -1,0 +1,36 @@
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+div.scrollable {
+    max-height: 600px;
+}
+
+.alert-info {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+div.choosebutton {
+    margin: auto;
+    width: 80%;
+}
+
+button.choose1 {
+    margin: auto;
+    width: 49%;
+}
+
+button.choose2 {
+    margin-left: 1%;
+}

@@ -1,0 +1,66 @@
+body {
+	padding: 20px;
+	background-image: url("../img/truck.jpg")
+}
+
+h4.mainlabel {
+    text-align: center;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+	background-color: lightgray;
+	width: 50%;
+	margin-left: 25%;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+div#footermail {
+	text-align: right;
+	padding-right: 10px;
+	float: left;
+	width:50%;
+}
+div#footergit {
+	text-align: left;
+	padding-left: : 10px;
+	float: left;
+	width:50%;
+}
+
+div.mainwindow {
+	background-color: white;
+	margin-top: 50px;
+	width: 80%;
+	margin-left: 10%;
+	padding: 20px;
+}
+
+.logoutlink {
+	text-decoration: none;
+	color: grey;
+}
+
+.alert-error {
+	background: rgba(255, 20, 20, 0.9);
+}
+
+.alert {
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+	margin: 5px;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.alert-info {
+	background-color: rgba(122, 122, 122, 0.62);
+}
+
+.alert-logout {
+	background-color: rgba(122, 122, 122, 0.62);
+}

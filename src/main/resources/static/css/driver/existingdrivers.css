@@ -1,0 +1,29 @@
+div#driverwindow {
+    text-align: center;
+    background-color: white;
+    margin-top: 50px;
+    width: 50%;
+    margin-left: 25%;
+    padding-bottom: 10px;
+}
+
+table#driversTable {
+    width: 80%;
+    margin: auto;
+    max-width: 500px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(157, 157, 157, 0.40)
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}

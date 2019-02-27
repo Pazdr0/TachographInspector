@@ -1,0 +1,15 @@
+div.choosebutton {
+    margin: auto;
+    width: 80%;
+}
+
+button.choose {
+    margin: auto;
+    width: 49%;
+}
+
+.alert-info {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 10px;
+}

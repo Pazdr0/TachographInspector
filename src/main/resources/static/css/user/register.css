@@ -1,0 +1,48 @@
+div#form {
+	max-width: 500px;
+	margin: auto;
+	padding-bottom: 20px;
+}
+
+div#fields {
+	margin-bottom: 10px;
+}
+
+fieldset {
+	background-color: white;
+}
+
+label {
+	font-weight: bold;
+	margin: 0px;
+}
+
+span {
+	width: 100%;
+	display: inline-block;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 5px 5px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+	background-color: #4CAF50;
+	color: white;
+	padding: 5px 5px;
+	margin: 8px 0px;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	margin-top: 20px;
+}
+
+button:hover {
+	opacity: 0.8;
+}

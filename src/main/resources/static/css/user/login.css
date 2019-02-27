@@ -1,0 +1,56 @@
+h3 {
+	text-align: center;
+}
+
+div#info {
+	background-color: hsl(31, 100%, 90%);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: -5px -5px 20px #abb6c9;
+}
+
+#loginform {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+fieldset {
+	background-color: white;
+}
+
+label {
+	font-weight: bold;
+	margin: 0px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 5px 5px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+	background-color: #4CAF50;
+	color: white;
+	padding: 5px 5px;
+	margin: 8px 0px;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+}
+
+button:hover {
+	opacity: 0.8;
+}
+
+span.forgotpasswd {
+	float: right;
+}
+
+.containerR {
+	padding: 8px;
+}

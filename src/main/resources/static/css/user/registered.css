@@ -1,0 +1,17 @@
+#text {
+    text-align: center;
+    background-color: white;
+    width: 50%;
+    margin-left: 25%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#link {
+    text-align: left;
+}
+
+div#registered {
+    text-align: center;
+    margin-top: 30px;
+}
