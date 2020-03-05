@@ -1,0 +1,18 @@
+{
+	"en": {
+		"one": "one",
+		"two": "two",
+		"three": "three",
+		"back": "back",
+		"driver": "driver",
+		"data": "date"
+	},
+	"pl": {
+		"one": "jeden",
+		"two": "dwa",
+		"three": "trzy",
+		"back": "wstecz",
+		"driver": "kierowca",
+		"data": "data"
+	}
+}
